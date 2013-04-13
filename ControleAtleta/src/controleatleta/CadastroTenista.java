@@ -12,6 +12,10 @@ import javax.swing.table.DefaultTableModel;
 
 public class CadastroTenista extends javax.swing.JFrame {
 
+    private final int MAO_PREFERIDA_DIREITA_INDICE = 0;
+    private final char MAO_PREFERIDA_DIREITA = 'D';
+    private final int MAO_PREFERIDA_ESQUERDA_INDICE = 1;
+    private final char MAO_PREFERIDA_ESQUERDA = 'E';
     private final int L0 = 0;
     private final int L1 = 1;
     private final int L2 = 2;
@@ -221,16 +225,14 @@ public class CadastroTenista extends javax.swing.JFrame {
 
     }
 
-    private boolean validarCampos() {
-        
-        //return validarNome() || validarDataNascimento() || validarAltura() || validarPeso() || validarNumero() || validarEnvergadura() || validarPosicaoRanking() || validarVelocidadeMediaSaque() || validarTotalPartidas() || validarTotalDerrotas() || validarTotalVitorias();
-     
+    private boolean validarCampos() {     
         
         if (jTextFieldNome.getText().trim().length() == 0) {
             this.exibirInformacao("O valor do campo 'Nome' não foi informado.");
             jTextFieldNome.requestFocus();
             return false;
         }
+        
         if (jTextFieldDataNascimento.getText().length() != 0) {
             try {
                 dateFormat.parse(jTextFieldDataNascimento.getText());
@@ -240,6 +242,7 @@ public class CadastroTenista extends javax.swing.JFrame {
                 return false;
             }
         }
+        
         try {
             Double.parseDouble(jTextFieldAltura.getText());
         } catch (Exception ex) {
@@ -247,6 +250,12 @@ public class CadastroTenista extends javax.swing.JFrame {
             jTextFieldAltura.requestFocus();
             return false;
         }
+        if(Double.parseDouble(jTextFieldAltura.getText()) < 0){
+            this.exibirInformacao("O valor do campo 'Altura' deve ser positivo.");
+            jTextFieldAltura.requestFocus();
+            return false;
+        }
+        
         try {
             Double.parseDouble(jTextFieldPeso.getText());
         } catch (Exception ex) {
@@ -254,6 +263,12 @@ public class CadastroTenista extends javax.swing.JFrame {
             jTextFieldPeso.requestFocus();
             return false;
         }
+        if(Double.parseDouble(jTextFieldPeso.getText()) < 0){
+            this.exibirInformacao("O valor do campo 'Peso' deve ser positivo.");
+            jTextFieldPeso.requestFocus();
+            return false;
+        }
+        
         if (!jTextFieldNumero.getText().equals("")) {
             try {
                 Integer.parseInt(jTextFieldNumero.getText());
@@ -263,6 +278,7 @@ public class CadastroTenista extends javax.swing.JFrame {
                 return false;
             }
         }
+        
         try {
             Double.parseDouble(jTextFieldEnvergadura.getText());
         } catch (Exception ex) {
@@ -270,114 +286,12 @@ public class CadastroTenista extends javax.swing.JFrame {
             jTextFieldEnvergadura.requestFocus();
             return false;
         }
-        try {
-            Integer.parseInt(jTextFieldPosicaoRanking.getText());
-        } catch (Exception ex) {
-            this.exibirInformacao("O valor do campo 'Posição no Ranking' é inválido.");
-            jTextFieldPosicaoRanking.requestFocus();
-            return false;
-        }
-        try {
-            Float.parseFloat(jTextFieldVelocidadeMediaSaque.getText());
-        } catch (Exception ex) {
-            this.exibirInformacao("O valor do campo 'Velocidade Média do Saque' é inválido.");
-            jTextFieldVelocidadeMediaSaque.requestFocus();
-            return false;
-        }
-        try {
-            Integer.parseInt(jTextFieldTotalPartidas.getText());
-        } catch (Exception ex) {
-            this.exibirInformacao("O valor do campo 'Total de Partidas' é inválido.");
-            jTextFieldTotalPartidas.requestFocus();
-            return false;
-            
-        }
-        try {
-            Integer.parseInt(jTextFieldTotalDerrotas.getText());
-        } catch (Exception ex) {
-            this.exibirInformacao("O valor do campo 'Total de Derrotas' é inválido.");
-            jTextFieldTotalDerrotas.requestFocus();
-            return false;
-        }
-        try {
-            Integer.parseInt(jTextFieldTotalVitorias.getText());
-        } catch (Exception ex) {
-            this.exibirInformacao("O valor do campo 'Total de Vitórias' é inválido.");
-            jTextFieldTotalVitorias.requestFocus();
-            return false;
-        }
-        return true;
-    }
-
-    private boolean validarNome(){
-        if (jTextFieldNome.getText().trim().length() == 0) {
-            this.exibirInformacao("O valor do campo 'Nome' não foi informado.");
-            jTextFieldNome.requestFocus();
-            return false;
-        }
-        return true;
-    }
-    
-    private boolean validarDataNascimento(){
-        if (jTextFieldDataNascimento.getText().length() != 0) {
-            try {
-                dateFormat.parse(jTextFieldDataNascimento.getText());
-            } catch (ParseException ex) {
-                this.exibirInformacao("O valor do campo 'Data de Nascimento' é inválido.");
-                jTextFieldDataNascimento.requestFocus();
-                return false;
-            }
-        }
-        return true;
-    }
-    
-    private boolean validarAltura(){
-        try {
-            Double.parseDouble(jTextFieldAltura.getText());
-        } catch (Exception ex) {
-            this.exibirInformacao("O valor do campo 'Altura' é inválido.");
-            jTextFieldAltura.requestFocus();
-            return false;
-        }
-        return true;
-    }
-    
-    private boolean validarPeso(){
-        try {
-            Double.parseDouble(jTextFieldPeso.getText());
-        } catch (Exception ex) {
-            this.exibirInformacao("O valor do campo 'Peso' é inválido.");
-            jTextFieldPeso.requestFocus();
-            return false;
-        }
-        return true;
-    }
-    
-    private boolean validarNumero(){
-        if (!jTextFieldNumero.getText().equals("")) {
-            try {
-                Integer.parseInt(jTextFieldNumero.getText());
-            } catch (Exception ex) {
-                this.exibirInformacao("O valor do campo 'Número' é inválido.");
-                jTextFieldNumero.requestFocus();
-                return false;
-            }
-        }
-        return true;
-    }
-    
-    private boolean validarEnvergadura(){
-        try {
-            Double.parseDouble(jTextFieldEnvergadura.getText());
-        } catch (Exception ex) {
-            this.exibirInformacao("O valor do campo 'Envergadura' é inválido.");
+        if(Double.parseDouble(jTextFieldEnvergadura.getText()) < 0){
+            this.exibirInformacao("O valor do campo 'Envergadura' deve ser positivo.");
             jTextFieldEnvergadura.requestFocus();
             return false;
         }
-        return true;
-    }
-    
-    private boolean validarPosicaoRanking(){
+        
         try {
             Integer.parseInt(jTextFieldPosicaoRanking.getText());
         } catch (Exception ex) {
@@ -385,10 +299,12 @@ public class CadastroTenista extends javax.swing.JFrame {
             jTextFieldPosicaoRanking.requestFocus();
             return false;
         }
-        return true;
-    }
-    
-    private boolean validarVelocidadeMediaSaque(){
+        if(Integer.parseInt(jTextFieldPosicaoRanking.getText()) < 0){
+            this.exibirInformacao("O valor do campo 'Posição no Ranking' deve ser positivo.");
+            jTextFieldPosicaoRanking.requestFocus();
+            return false;
+        }
+        
         try {
             Float.parseFloat(jTextFieldVelocidadeMediaSaque.getText());
         } catch (Exception ex) {
@@ -396,22 +312,25 @@ public class CadastroTenista extends javax.swing.JFrame {
             jTextFieldVelocidadeMediaSaque.requestFocus();
             return false;
         }
-        return true;
-    }
-    
-    private boolean validarTotalPartidas(){
+        if(Float.parseFloat(jTextFieldVelocidadeMediaSaque.getText()) < 0.0){
+            this.exibirInformacao("O valor do campo 'Velocidade Média do Saque' deve ser positivo.");
+            jTextFieldVelocidadeMediaSaque.requestFocus();
+            return false;
+        }
+        
         try {
             Integer.parseInt(jTextFieldTotalPartidas.getText());
         } catch (Exception ex) {
             this.exibirInformacao("O valor do campo 'Total de Partidas' é inválido.");
             jTextFieldTotalPartidas.requestFocus();
-            return false;
-            
+            return false; 
         }
-        return true;
-    }
-    
-    private boolean validarTotalDerrotas(){
+        if(Integer.parseInt(jTextFieldTotalPartidas.getText()) != Integer.parseInt(jTextFieldTotalDerrotas.getText()) + Integer.parseInt(jTextFieldTotalVitorias.getText())){
+            this.exibirInformacao("O valor do campo 'Total de Partidas' deve ser igual a soma dos campos 'Total de Derrotas' e 'Total de Vitórias'.");
+            jTextFieldTotalPartidas.requestFocus();
+            return false; 
+        }
+        
         try {
             Integer.parseInt(jTextFieldTotalDerrotas.getText());
         } catch (Exception ex) {
@@ -419,10 +338,12 @@ public class CadastroTenista extends javax.swing.JFrame {
             jTextFieldTotalDerrotas.requestFocus();
             return false;
         }
-        return true;
-    }
-    
-    private boolean validarTotalVitorias(){
+        if(Integer.parseInt(jTextFieldTotalDerrotas.getText()) < 0){
+            this.exibirInformacao("O valor do campo 'Total de Derrotas' deve ser positivo.");
+            jTextFieldTotalDerrotas.requestFocus();
+            return false;
+        }
+        
         try {
             Integer.parseInt(jTextFieldTotalVitorias.getText());
         } catch (Exception ex) {
@@ -430,6 +351,12 @@ public class CadastroTenista extends javax.swing.JFrame {
             jTextFieldTotalVitorias.requestFocus();
             return false;
         }
+        if(Integer.parseInt(jTextFieldTotalVitorias.getText()) < 0){
+            this.exibirInformacao("O valor do campo 'Total de Vitórias' deve ser positivo.");
+            jTextFieldTotalVitorias.requestFocus();
+            return false;
+        }
+        
         return true;
     }
     
@@ -472,6 +399,7 @@ public class CadastroTenista extends javax.swing.JFrame {
         jComboBoxPrincipalGolpe.setEnabled(modoAlteracao);
         jComboBoxEmpunhadura.setEnabled(modoAlteracao);
         jComboBoxTipoQuadraPreferida.setEnabled(modoAlteracao);
+        jComboBoxMaoPreferida.setEnabled(modoAlteracao);
         jTableListaTenistas.setEnabled(modoAlteracao == false);
     }
 
@@ -547,6 +475,10 @@ public class CadastroTenista extends javax.swing.JFrame {
                 umTenista.setSexo(SEXO_FEMININO_VALOR);
                 break;
         }
+        
+        switch(jComboBoxEstado.getSelectedIndex()){
+            
+        }
 
         switch (jComboBoxTipoQuadraPreferida.getSelectedIndex()) {
             case TIPO_QUADRA_SAIBRO_INDICE:
@@ -592,7 +524,37 @@ public class CadastroTenista extends javax.swing.JFrame {
                 umTenista.setPrincipalGolpe(TOPSPIN);
                 break;
         }
+        
+        switch(jComboBoxMaoPreferida.getSelectedIndex()){
+            case MAO_PREFERIDA_DIREITA_INDICE:
+                umTenista.setMaoPreferida(MAO_PREFERIDA_DIREITA);
+                break;
+            case MAO_PREFERIDA_ESQUERDA_INDICE:
+                umTenista.setMaoPreferida(MAO_PREFERIDA_ESQUERDA);
+                break;
+        }
 
+        switch(jComboBoxEmpunhadura.getSelectedIndex()){
+            case L0:
+                umTenista.setEmpunhadura(L0);
+                break;
+            case L1:
+                umTenista.setEmpunhadura(L1);
+                break;
+            case L2:
+                umTenista.setEmpunhadura(L2);
+                break;
+            case L3:
+                umTenista.setEmpunhadura(L3);
+                break;
+            case L4:
+                umTenista.setEmpunhadura(L4);
+                break;
+            case L5:
+                umTenista.setEmpunhadura(L5);
+                break;
+        }
+        
         if (novoRegistro == true) {
             controleTenista.adicionar(umTenista);
         }
