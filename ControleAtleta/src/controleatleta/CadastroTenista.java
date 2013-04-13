@@ -10,43 +10,60 @@ import javax.swing.JOptionPane;
 import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
-public class CadastroBoxeador extends javax.swing.JFrame {
+public class CadastroTenista extends javax.swing.JFrame {
 
+    private final int L0 = 0;
+    private final int L1 = 1;
+    private final int L2 = 2;
+    private final int L3 = 3;
+    private final int L4 = 4;
+    private final int L5 = 5;
+    private final char DESTRO = 'D';
+    private final int DESTRO_INDICE = 0;
+    private final char CANHOTO = 'C';
+    private final int CANHOTO_INDICE = 1;
+    private final int BACKHAND = 0;
+    private final int DRIVE = 1;
+    private final int DROPSHOT = 2;
+    private final int FOREHAND = 3;
+    private final int LOB = 4;
+    private final int OVERHEAD = 5;
+    private final int PASSINGSHOT = 6;
+    private final int SLICE = 7;
+    private final int SMASH = 8;
+    private final int TOPSPIN = 9;
+    private final char TIPO_QUADRA_SAIBRO = 'S';
+    private final int TIPO_QUADRA_SAIBRO_INDICE = 0;
+    private final char TIPO_QUADRA_PISO_DURO = 'P';
+    private final int TIPO_QUADRA_PISO_DURO_INDICE = 1;
+    private final char TIPO_QUADRA_GRAMA = 'G';
+    private final int TIPO_QUADRA_GRAMA_INDICE = 2;
     private final byte SEXO_MASCULINO_INDICE = 0;
     private final byte SEXO_FEMININO_INDICE = 1;
     private final char SEXO_MASCULINO_VALOR = 'M';
     private final char SEXO_FEMININO_VALOR = 'F';
-    private final byte CATEGORIA_AMADOR_INDICE = 0;
-    private final byte CATEGORIA_PROFISSIONAL_INDICE = 1;
-    private final char CATEGORIA_AMADOR_VALOR = 'A';
-    private final char CATEGORIA_PROFISSIONAL_VALOR = 'P';
-    private final byte ESTILO_ORTODOXO_INDICE = 0;
-    private final byte ESTILO_SOUTHPAW_INDICE = 1;
-    private final char ESTILO_ORTODOXO_VALOR = 'O';
-    private final char ESTILO_SOUTHPAW_VALOR = 'S';
     private DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-    private ControleBoxeador controleBoxeador;
-    private Boxeador umBoxeador;
+    private ControleTenista controleTenista;
+    private Tenista umTenista;
     private boolean modoAlteracao;
     private boolean novoRegistro;
     private DefaultListModel telefonesListModel;
     private DefaultListModel premiacaoListModel;
 
-    public CadastroBoxeador() {
+    public CadastroTenista() {
         initComponents();
         this.habilitarDesabilitarCampos();
-        this.controleBoxeador = new ControleBoxeador();
+        this.controleTenista = new ControleTenista();
         this.telefonesListModel = new DefaultListModel();
         this.jListTelefones.setModel(telefonesListModel);
         this.premiacaoListModel = new DefaultListModel();
         this.jListPremiacoes.setModel(premiacaoListModel);
-        this.jTableListaBoxeadores.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        this.jTableListaTenistas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
     }
 
     private void limparCampos() {
         jTextFieldAltura.setText("0.0");
         jTextFieldBairro.setText(null);
-        jTextFieldCategoriaPeso.setText(null);
         jTextFieldCep.setText(null);
         jTextFieldCidade.setText(null);
         jTextFieldComplemento.setText(null);
@@ -62,66 +79,63 @@ public class CadastroBoxeador extends javax.swing.JFrame {
         jTextFieldPais.setText(null);
         jTextFieldPeso.setText("0.0");
         jTextFieldRg.setText(null);
+        jTextFieldPosicaoRanking.setText("0");
+        jTextFieldVelocidadeMediaSaque.setText("0");
+        jTextFieldTotalPartidas.setText("0");
         jTextFieldTotalDerrotas.setText("0");
-        jTextFieldTotalDesistencias.setText("0");
-        jTextFieldTotalEmpates.setText("0");
-        jTextFieldTotalLutas.setText("0");
-        jTextFieldTotalNocaute.setText("0");
         jTextFieldTotalVitorias.setText("0");
         telefonesListModel.clear();
         premiacaoListModel.clear();
         jComboBoxSexo.setSelectedIndex(0);
-        jComboBoxCategoria.setSelectedIndex(0);
-        jComboBoxEstilo.setSelectedIndex(0);
-        this.atualizarCategoriaPeso();
+        jComboBoxTipoQuadraPreferida.setSelectedIndex(0);
+        jComboBoxPrincipalGolpe.setSelectedIndex(0);
+        
     }
 
     private void preencherCampos() {
         ArrayList<String> telefones;
         ArrayList<Premiacao> premiacoes;
 
-        jTextFieldAltura.setText(Double.toString(umBoxeador.getAltura()));
-        jTextFieldBairro.setText(umBoxeador.getEndereco().getBairro());
-        jTextFieldCategoriaPeso.setText(Double.toString(umBoxeador.getPeso()));
-        jTextFieldCep.setText(umBoxeador.getEndereco().getCep());
-        jTextFieldCidade.setText(umBoxeador.getEndereco().getCidade());
-        jTextFieldComplemento.setText(umBoxeador.getEndereco().getComplemento());
-        jTextFieldCpf.setText(umBoxeador.getCpf());
-        if (umBoxeador.getDataNascimento() == null) {
+        jTextFieldAltura.setText(Double.toString(umTenista.getAltura()));
+        jTextFieldBairro.setText(umTenista.getEndereco().getBairro());
+        jTextFieldCep.setText(umTenista.getEndereco().getCep());
+        jTextFieldCidade.setText(umTenista.getEndereco().getCidade());
+        jTextFieldComplemento.setText(umTenista.getEndereco().getComplemento());
+        jTextFieldCpf.setText(umTenista.getCpf());
+        if (umTenista.getDataNascimento() == null) {
             jTextFieldDataNascimento.setText(null);
         } else {
-            jTextFieldDataNascimento.setText(dateFormat.format(umBoxeador.getDataNascimento()));
+            jTextFieldDataNascimento.setText(dateFormat.format(umTenista.getDataNascimento()));
         }
-        jTextFieldEnvergadura.setText(Double.toString(umBoxeador.getEnvergadura()));
-        jComboBoxEstado.setSelectedItem(umBoxeador.getEndereco().getEstado());
-        jTextFieldLogradouro.setText(umBoxeador.getEndereco().getLogradouro());
-        jTextFieldNome.setText(umBoxeador.getNome());
-        jTextFieldNomeMae.setText(umBoxeador.getNomeMae());
-        jTextFieldNomePai.setText(umBoxeador.getNomePai());
-        jTextFieldNumero.setText(umBoxeador.getEndereco().getNumero().toString());
-        jTextFieldPais.setText(umBoxeador.getEndereco().getPais());
-        jTextFieldPeso.setText(Double.toString(umBoxeador.getPeso()));
-        jTextFieldRg.setText(umBoxeador.getRg());
-        jTextFieldTotalDerrotas.setText(Integer.toString(umBoxeador.getTotalDerrotas()));
-        jTextFieldTotalDesistencias.setText(Integer.toString(umBoxeador.getTotalDesistencias()));
-        jTextFieldTotalEmpates.setText(Integer.toString(umBoxeador.getTotalEmpates()));
-        jTextFieldTotalLutas.setText(Integer.toString(umBoxeador.getTotalLutas()));
-        jTextFieldTotalNocaute.setText(Integer.toString(umBoxeador.getTotalVitoriasNocaute()));
-        jTextFieldTotalVitorias.setText(Integer.toString(umBoxeador.getTotalVitorias()));
+        jTextFieldEnvergadura.setText(Double.toString(umTenista.getEnvergadura()));
+        jComboBoxEstado.setSelectedItem(umTenista.getEndereco().getEstado());
+        jTextFieldLogradouro.setText(umTenista.getEndereco().getLogradouro());
+        jTextFieldNome.setText(umTenista.getNome());
+        jTextFieldNomeMae.setText(umTenista.getNomeMae());
+        jTextFieldNomePai.setText(umTenista.getNomePai());
+        jTextFieldNumero.setText(umTenista.getEndereco().getNumero().toString());
+        jTextFieldPais.setText(umTenista.getEndereco().getPais());
+        jTextFieldPeso.setText(Double.toString(umTenista.getPeso()));
+        jTextFieldRg.setText(umTenista.getRg());
+        jTextFieldPosicaoRanking.setText(Integer.toString(umTenista.getTotalDerrotas()));
+        jTextFieldVelocidadeMediaSaque.setText(Float.toString(umTenista.getVelocidadeMediaSaque()));
+        jTextFieldTotalPartidas.setText(Integer.toString(umTenista.getTotalPartidas()));
+        jTextFieldTotalDerrotas.setText(Integer.toString(umTenista.getTotalDerrotas()));
+        jTextFieldTotalVitorias.setText(Integer.toString(umTenista.getTotalVitorias()));
 
         telefonesListModel.clear();
-        telefones = umBoxeador.getTelefones();
+        telefones = umTenista.getTelefones();
         for (String t : telefones) {
             telefonesListModel.addElement(t);
         }
 
         premiacaoListModel.clear();
-        premiacoes = umBoxeador.getPremiacoes();
+        premiacoes = umTenista.getPremiacoes();
         for (Premiacao p : premiacoes) {
             premiacaoListModel.addElement(p);
         }
 
-        switch (umBoxeador.getSexo()) {
+        switch (umTenista.getSexo()) {
             case SEXO_MASCULINO_VALOR:
                 jComboBoxSexo.setSelectedIndex(SEXO_MASCULINO_INDICE);
                 break;
@@ -130,28 +144,88 @@ public class CadastroBoxeador extends javax.swing.JFrame {
                 break;
         }
 
-        switch (umBoxeador.getCategoria()) {
-            case CATEGORIA_AMADOR_VALOR:
-                jComboBoxCategoria.setSelectedIndex(CATEGORIA_AMADOR_INDICE);
+        switch (umTenista.getTipoQuadraPreferida()) {
+            case TIPO_QUADRA_SAIBRO:
+                jComboBoxTipoQuadraPreferida.setSelectedIndex(TIPO_QUADRA_SAIBRO_INDICE);
                 break;
-            case CATEGORIA_PROFISSIONAL_VALOR:
-                jComboBoxCategoria.setSelectedIndex(CATEGORIA_PROFISSIONAL_INDICE);
+            case TIPO_QUADRA_PISO_DURO:
+                jComboBoxTipoQuadraPreferida.setSelectedIndex(TIPO_QUADRA_PISO_DURO_INDICE);
                 break;
-        }
-
-        switch (umBoxeador.getEstilo()) {
-            case ESTILO_ORTODOXO_VALOR:
-                jComboBoxEstilo.setSelectedIndex(ESTILO_ORTODOXO_INDICE);
-                break;
-            case ESTILO_SOUTHPAW_VALOR:
-                jComboBoxEstilo.setSelectedIndex(ESTILO_SOUTHPAW_INDICE);
+            case TIPO_QUADRA_GRAMA:
+                jComboBoxTipoQuadraPreferida.setSelectedIndex(TIPO_QUADRA_GRAMA_INDICE);
                 break;
         }
 
-        this.atualizarCategoriaPeso();
+        switch (umTenista.getPrincipalGolpe()) {
+            case BACKHAND:
+                jComboBoxPrincipalGolpe.setSelectedIndex(BACKHAND);
+                break;
+            case DRIVE:
+                jComboBoxPrincipalGolpe.setSelectedIndex(DRIVE);
+                break;
+            case DROPSHOT:
+                jComboBoxPrincipalGolpe.setSelectedIndex(DROPSHOT);
+                break;
+            case FOREHAND:
+                jComboBoxPrincipalGolpe.setSelectedIndex(FOREHAND);
+                break;
+            case LOB:
+                jComboBoxPrincipalGolpe.setSelectedIndex(LOB);
+                break;
+            case OVERHEAD:
+                jComboBoxPrincipalGolpe.setSelectedIndex(OVERHEAD);
+                break;
+            case PASSINGSHOT:
+                jComboBoxPrincipalGolpe.setSelectedIndex(PASSINGSHOT);
+                break;
+            case SLICE:
+                jComboBoxPrincipalGolpe.setSelectedIndex(SLICE);
+                break;
+            case SMASH:
+                jComboBoxPrincipalGolpe.setSelectedIndex(SMASH);
+                break;
+            case TOPSPIN:
+                jComboBoxPrincipalGolpe.setSelectedIndex(TOPSPIN);
+                break;
+        }
+        
+        switch(umTenista.getMaoPreferida()){
+            case DESTRO:
+                jComboBoxMaoPreferida.setSelectedIndex(DESTRO_INDICE);
+                break;
+            case CANHOTO:
+                jComboBoxMaoPreferida.setSelectedIndex(CANHOTO_INDICE);
+                break;
+        }
+        
+        switch(umTenista.getEmpunhadura()){
+            case L0:
+                jComboBoxEmpunhadura.setSelectedIndex(L0);
+                break;
+            case L1:
+                jComboBoxEmpunhadura.setSelectedIndex(L1);
+                break;
+            case L2:
+                jComboBoxEmpunhadura.setSelectedIndex(L2);
+                break;
+            case L3:
+                jComboBoxEmpunhadura.setSelectedIndex(L3);
+                break;
+            case L4:
+                jComboBoxEmpunhadura.setSelectedIndex(L4);
+                break;
+            case L5:
+                jComboBoxEmpunhadura.setSelectedIndex(L5);
+                break;
+        }
+
     }
 
     private boolean validarCampos() {
+        
+        //return validarNome() || validarDataNascimento() || validarAltura() || validarPeso() || validarNumero() || validarEnvergadura() || validarPosicaoRanking() || validarVelocidadeMediaSaque() || validarTotalPartidas() || validarTotalDerrotas() || validarTotalVitorias();
+     
+        
         if (jTextFieldNome.getText().trim().length() == 0) {
             this.exibirInformacao("O valor do campo 'Nome' não foi informado.");
             jTextFieldNome.requestFocus();
@@ -197,38 +271,32 @@ public class CadastroBoxeador extends javax.swing.JFrame {
             return false;
         }
         try {
+            Integer.parseInt(jTextFieldPosicaoRanking.getText());
+        } catch (Exception ex) {
+            this.exibirInformacao("O valor do campo 'Posição no Ranking' é inválido.");
+            jTextFieldPosicaoRanking.requestFocus();
+            return false;
+        }
+        try {
+            Float.parseFloat(jTextFieldVelocidadeMediaSaque.getText());
+        } catch (Exception ex) {
+            this.exibirInformacao("O valor do campo 'Velocidade Média do Saque' é inválido.");
+            jTextFieldVelocidadeMediaSaque.requestFocus();
+            return false;
+        }
+        try {
+            Integer.parseInt(jTextFieldTotalPartidas.getText());
+        } catch (Exception ex) {
+            this.exibirInformacao("O valor do campo 'Total de Partidas' é inválido.");
+            jTextFieldTotalPartidas.requestFocus();
+            return false;
+            
+        }
+        try {
             Integer.parseInt(jTextFieldTotalDerrotas.getText());
         } catch (Exception ex) {
             this.exibirInformacao("O valor do campo 'Total de Derrotas' é inválido.");
             jTextFieldTotalDerrotas.requestFocus();
-            return false;
-        }
-        try {
-            Integer.parseInt(jTextFieldTotalDesistencias.getText());
-        } catch (Exception ex) {
-            this.exibirInformacao("O valor do campo 'Total de Desistencias' é inválido.");
-            jTextFieldTotalDesistencias.requestFocus();
-            return false;
-        }
-        try {
-            Integer.parseInt(jTextFieldTotalEmpates.getText());
-        } catch (Exception ex) {
-            this.exibirInformacao("O valor do campo 'Total de Empates' é inválido.");
-            jTextFieldTotalEmpates.requestFocus();
-            return false;
-        }
-        try {
-            Integer.parseInt(jTextFieldTotalLutas.getText());
-        } catch (Exception ex) {
-            this.exibirInformacao("O valor do campo 'Total de Lutas' é inválido.");
-            jTextFieldTotalLutas.requestFocus();
-            return false;
-        }
-        try {
-            Integer.parseInt(jTextFieldTotalNocaute.getText());
-        } catch (Exception ex) {
-            this.exibirInformacao("O valor do campo 'Total de Nocautes' é inválido.");
-            jTextFieldTotalNocaute.requestFocus();
             return false;
         }
         try {
@@ -241,11 +309,134 @@ public class CadastroBoxeador extends javax.swing.JFrame {
         return true;
     }
 
+    private boolean validarNome(){
+        if (jTextFieldNome.getText().trim().length() == 0) {
+            this.exibirInformacao("O valor do campo 'Nome' não foi informado.");
+            jTextFieldNome.requestFocus();
+            return false;
+        }
+        return true;
+    }
+    
+    private boolean validarDataNascimento(){
+        if (jTextFieldDataNascimento.getText().length() != 0) {
+            try {
+                dateFormat.parse(jTextFieldDataNascimento.getText());
+            } catch (ParseException ex) {
+                this.exibirInformacao("O valor do campo 'Data de Nascimento' é inválido.");
+                jTextFieldDataNascimento.requestFocus();
+                return false;
+            }
+        }
+        return true;
+    }
+    
+    private boolean validarAltura(){
+        try {
+            Double.parseDouble(jTextFieldAltura.getText());
+        } catch (Exception ex) {
+            this.exibirInformacao("O valor do campo 'Altura' é inválido.");
+            jTextFieldAltura.requestFocus();
+            return false;
+        }
+        return true;
+    }
+    
+    private boolean validarPeso(){
+        try {
+            Double.parseDouble(jTextFieldPeso.getText());
+        } catch (Exception ex) {
+            this.exibirInformacao("O valor do campo 'Peso' é inválido.");
+            jTextFieldPeso.requestFocus();
+            return false;
+        }
+        return true;
+    }
+    
+    private boolean validarNumero(){
+        if (!jTextFieldNumero.getText().equals("")) {
+            try {
+                Integer.parseInt(jTextFieldNumero.getText());
+            } catch (Exception ex) {
+                this.exibirInformacao("O valor do campo 'Número' é inválido.");
+                jTextFieldNumero.requestFocus();
+                return false;
+            }
+        }
+        return true;
+    }
+    
+    private boolean validarEnvergadura(){
+        try {
+            Double.parseDouble(jTextFieldEnvergadura.getText());
+        } catch (Exception ex) {
+            this.exibirInformacao("O valor do campo 'Envergadura' é inválido.");
+            jTextFieldEnvergadura.requestFocus();
+            return false;
+        }
+        return true;
+    }
+    
+    private boolean validarPosicaoRanking(){
+        try {
+            Integer.parseInt(jTextFieldPosicaoRanking.getText());
+        } catch (Exception ex) {
+            this.exibirInformacao("O valor do campo 'Posição no Ranking' é inválido.");
+            jTextFieldPosicaoRanking.requestFocus();
+            return false;
+        }
+        return true;
+    }
+    
+    private boolean validarVelocidadeMediaSaque(){
+        try {
+            Float.parseFloat(jTextFieldVelocidadeMediaSaque.getText());
+        } catch (Exception ex) {
+            this.exibirInformacao("O valor do campo 'Velocidade Média do Saque' é inválido.");
+            jTextFieldVelocidadeMediaSaque.requestFocus();
+            return false;
+        }
+        return true;
+    }
+    
+    private boolean validarTotalPartidas(){
+        try {
+            Integer.parseInt(jTextFieldTotalPartidas.getText());
+        } catch (Exception ex) {
+            this.exibirInformacao("O valor do campo 'Total de Partidas' é inválido.");
+            jTextFieldTotalPartidas.requestFocus();
+            return false;
+            
+        }
+        return true;
+    }
+    
+    private boolean validarTotalDerrotas(){
+        try {
+            Integer.parseInt(jTextFieldTotalDerrotas.getText());
+        } catch (Exception ex) {
+            this.exibirInformacao("O valor do campo 'Total de Derrotas' é inválido.");
+            jTextFieldTotalDerrotas.requestFocus();
+            return false;
+        }
+        return true;
+    }
+    
+    private boolean validarTotalVitorias(){
+        try {
+            Integer.parseInt(jTextFieldTotalVitorias.getText());
+        } catch (Exception ex) {
+            this.exibirInformacao("O valor do campo 'Total de Vitórias' é inválido.");
+            jTextFieldTotalVitorias.requestFocus();
+            return false;
+        }
+        return true;
+    }
+    
     private void habilitarDesabilitarCampos() {
-        boolean registroSelecionado = (umBoxeador != null);
+        boolean registroSelecionado = (umTenista != null);
         jTextFieldAltura.setEnabled(modoAlteracao);
         jTextFieldBairro.setEnabled(modoAlteracao);
-        jTextFieldCategoriaPeso.setEnabled(false);
         jTextFieldCep.setEnabled(modoAlteracao);
         jTextFieldCidade.setEnabled(modoAlteracao);
         jTextFieldComplemento.setEnabled(modoAlteracao);
@@ -261,11 +452,10 @@ public class CadastroBoxeador extends javax.swing.JFrame {
         jTextFieldPais.setEnabled(modoAlteracao);
         jTextFieldPeso.setEnabled(modoAlteracao);
         jTextFieldRg.setEnabled(modoAlteracao);
+        jTextFieldPosicaoRanking.setEnabled(modoAlteracao);
+        jTextFieldVelocidadeMediaSaque.setEnabled(modoAlteracao);
+        jTextFieldTotalPartidas.setEnabled(modoAlteracao);
         jTextFieldTotalDerrotas.setEnabled(modoAlteracao);
-        jTextFieldTotalDesistencias.setEnabled(modoAlteracao);
-        jTextFieldTotalEmpates.setEnabled(modoAlteracao);
-        jTextFieldTotalLutas.setEnabled(modoAlteracao);
-        jTextFieldTotalNocaute.setEnabled(modoAlteracao);
         jTextFieldTotalVitorias.setEnabled(modoAlteracao);
         jButtonNovo.setEnabled(modoAlteracao == false);
         jButtonAlterar.setEnabled(modoAlteracao == false && registroSelecionado == true);
@@ -278,9 +468,11 @@ public class CadastroBoxeador extends javax.swing.JFrame {
         jButtonAdicionarPremiacao.setEnabled(modoAlteracao);
         jButtonRemoverPremiacao.setEnabled(modoAlteracao);
         jComboBoxSexo.setEnabled(modoAlteracao);
-        jComboBoxCategoria.setEnabled(modoAlteracao);
-        jComboBoxEstilo.setEnabled(modoAlteracao);
-        jTableListaBoxeadores.setEnabled(modoAlteracao == false);
+        jComboBoxTipoQuadraPreferida.setEnabled(modoAlteracao);
+        jComboBoxPrincipalGolpe.setEnabled(modoAlteracao);
+        jComboBoxEmpunhadura.setEnabled(modoAlteracao);
+        jComboBoxTipoQuadraPreferida.setEnabled(modoAlteracao);
+        jTableListaTenistas.setEnabled(modoAlteracao == false);
     }
 
     private void salvarRegistro() {
@@ -326,91 +518,102 @@ public class CadastroBoxeador extends javax.swing.JFrame {
         }
 
         if (novoRegistro == true) {
-            umBoxeador = new Boxeador(jTextFieldNome.getText());
+            umTenista = new Tenista(jTextFieldNome.getText());
         } else {
-            umBoxeador.setNome(jTextFieldNome.getText());
+            umTenista.setNome(jTextFieldNome.getText());
         }
-        umBoxeador.setEndereco(endereco);
-        umBoxeador.setTelefones(telefones);
-        umBoxeador.setPremiacoes(premiacoes);
-        umBoxeador.setDataNascimento(dataNascimento);
-        umBoxeador.setAltura(Double.parseDouble(jTextFieldAltura.getText()));
-        umBoxeador.setNomeMae(jTextFieldNomeMae.getText());
-        umBoxeador.setNomePai(jTextFieldNomePai.getText());
-        umBoxeador.setPeso(Double.parseDouble(jTextFieldPeso.getText()));
-        umBoxeador.setCpf(jTextFieldCpf.getText());
-        umBoxeador.setRg(jTextFieldRg.getText());
-        umBoxeador.setEnvergadura(Double.parseDouble(jTextFieldEnvergadura.getText()));
-        umBoxeador.setTotalDerrotas(Integer.parseInt(jTextFieldTotalDerrotas.getText()));
-        umBoxeador.setTotalDesistencias(Integer.parseInt(jTextFieldTotalDesistencias.getText()));
-        umBoxeador.setTotalEmpates(Integer.parseInt(jTextFieldTotalEmpates.getText()));
-        umBoxeador.setTotalLutas(Integer.parseInt(jTextFieldTotalLutas.getText()));
-        umBoxeador.setTotalVitoriasNocaute(Integer.parseInt(jTextFieldTotalNocaute.getText()));
-        umBoxeador.setTotalVitorias(Integer.parseInt(jTextFieldTotalVitorias.getText()));
+        umTenista.setEndereco(endereco);
+        umTenista.setTelefones(telefones);
+        umTenista.setPremiacoes(premiacoes);
+        umTenista.setDataNascimento(dataNascimento);
+        umTenista.setAltura(Double.parseDouble(jTextFieldAltura.getText()));
+        umTenista.setNomeMae(jTextFieldNomeMae.getText());
+        umTenista.setNomePai(jTextFieldNomePai.getText());
+        umTenista.setPeso(Double.parseDouble(jTextFieldPeso.getText()));
+        umTenista.setCpf(jTextFieldCpf.getText());
+        umTenista.setRg(jTextFieldRg.getText());
+        umTenista.setEnvergadura(Double.parseDouble(jTextFieldEnvergadura.getText()));
+        umTenista.setPosicaoRanking(Integer.parseInt(jTextFieldPosicaoRanking.getText()));
+        umTenista.setVelocidadeMediaSaque(Float.parseFloat(jTextFieldVelocidadeMediaSaque.getText()));
+        umTenista.setTotalPartidas(Integer.parseInt(jTextFieldTotalPartidas.getText()));
+        umTenista.setTotalDerrotas(Integer.parseInt(jTextFieldTotalDerrotas.getText()));
+        umTenista.setTotalVitorias(Integer.parseInt(jTextFieldTotalVitorias.getText()));
 
         switch (jComboBoxSexo.getSelectedIndex()) {
             case SEXO_MASCULINO_INDICE:
-                umBoxeador.setSexo(SEXO_MASCULINO_VALOR);
+                umTenista.setSexo(SEXO_MASCULINO_VALOR);
                 break;
             case SEXO_FEMININO_INDICE:
-                umBoxeador.setSexo(SEXO_FEMININO_VALOR);
+                umTenista.setSexo(SEXO_FEMININO_VALOR);
                 break;
         }
 
-        switch (jComboBoxCategoria.getSelectedIndex()) {
-            case CATEGORIA_AMADOR_INDICE:
-                umBoxeador.setCategoria(CATEGORIA_AMADOR_VALOR);
+        switch (jComboBoxTipoQuadraPreferida.getSelectedIndex()) {
+            case TIPO_QUADRA_SAIBRO_INDICE:
+                umTenista.setTipoQuadraPreferida(TIPO_QUADRA_SAIBRO);
                 break;
-            case CATEGORIA_PROFISSIONAL_INDICE:
-                umBoxeador.setCategoria(CATEGORIA_PROFISSIONAL_VALOR);
+            case TIPO_QUADRA_PISO_DURO_INDICE:
+                umTenista.setTipoQuadraPreferida(TIPO_QUADRA_PISO_DURO);
+                break;
+            case TIPO_QUADRA_GRAMA_INDICE:
+                umTenista.setTipoQuadraPreferida(TIPO_QUADRA_GRAMA);
                 break;
         }
 
-        switch (jComboBoxEstilo.getSelectedIndex()) {
-            case ESTILO_ORTODOXO_INDICE:
-                umBoxeador.setEstilo(ESTILO_ORTODOXO_VALOR);
+        switch (jComboBoxPrincipalGolpe.getSelectedIndex()) {
+            case BACKHAND:
+                umTenista.setPrincipalGolpe(BACKHAND);
                 break;
-            case ESTILO_SOUTHPAW_INDICE:
-                umBoxeador.setEstilo(ESTILO_SOUTHPAW_VALOR);
+            case DRIVE:
+                umTenista.setPrincipalGolpe(DRIVE);
+                break;
+            case DROPSHOT:
+                umTenista.setPrincipalGolpe(DROPSHOT);
+                break;
+            case FOREHAND:
+                umTenista.setPrincipalGolpe(FOREHAND);
+                break;
+            case LOB:
+                umTenista.setPrincipalGolpe(LOB);
+                break;
+            case OVERHEAD:
+                umTenista.setPrincipalGolpe(OVERHEAD);
+                break;
+            case PASSINGSHOT:
+                umTenista.setPrincipalGolpe(PASSINGSHOT);
+                break;
+            case SLICE:
+                umTenista.setPrincipalGolpe(SLICE);
+                break;
+            case SMASH:
+                umTenista.setPrincipalGolpe(SMASH);
+                break;
+            case TOPSPIN:
+                umTenista.setPrincipalGolpe(TOPSPIN);
                 break;
         }
 
         if (novoRegistro == true) {
-            controleBoxeador.adicionar(umBoxeador);
+            controleTenista.adicionar(umTenista);
         }
         modoAlteracao = false;
         novoRegistro = false;
-        this.carregarListaBoxeadores();
+        this.carregarListaTenistas();
         this.habilitarDesabilitarCampos();
     }
 
-    private void carregarListaBoxeadores() {
-        ArrayList<Boxeador> listaBoxeadores = controleBoxeador.getListaBoxeadores();
-        DefaultTableModel model = (DefaultTableModel) jTableListaBoxeadores.getModel();
+    private void carregarListaTenistas() {
+        ArrayList<Tenista> listaTenistas = controleTenista.getListaTenistas();
+        DefaultTableModel model = (DefaultTableModel) jTableListaTenistas.getModel();
         model.setRowCount(0);
-        for (Boxeador b : listaBoxeadores) {
+        for (Tenista b : listaTenistas) {
             model.addRow(new String[]{b.getNome(), b.getCpf()});
         }
-        jTableListaBoxeadores.setModel(model);
+        jTableListaTenistas.setModel(model);
     }
 
     private void exibirInformacao(String info) {
         JOptionPane.showMessageDialog(this, info, "Atenção", JOptionPane.INFORMATION_MESSAGE);
-    }
-
-    private void atualizarCategoriaPeso() {
-        char categoria;
-        switch (jComboBoxCategoria.getSelectedIndex()) {
-            case CATEGORIA_AMADOR_INDICE:
-                categoria = CATEGORIA_AMADOR_VALOR;
-                break;
-            case CATEGORIA_PROFISSIONAL_INDICE:
-                categoria = CATEGORIA_PROFISSIONAL_VALOR;
-                break;
-            default:
-                return;
-        }
-        jTextFieldCategoriaPeso.setText(Boxeador.obterCategoriaPesoNome(categoria, Double.parseDouble(jTextFieldPeso.getText())));
     }
 
     @SuppressWarnings("unchecked")
@@ -463,39 +666,39 @@ public class CadastroBoxeador extends javax.swing.JFrame {
         jComboBoxEstado = new javax.swing.JComboBox();
         jTextFieldCep = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
-        jLabelCategoria = new javax.swing.JLabel();
-        jComboBoxCategoria = new javax.swing.JComboBox();
-        jLabelCategoriaPeso = new javax.swing.JLabel();
-        jLabelEstilo = new javax.swing.JLabel();
-        jComboBoxEstilo = new javax.swing.JComboBox();
+        jLabelTipoQuadraPreferida = new javax.swing.JLabel();
+        jComboBoxTipoQuadraPreferida = new javax.swing.JComboBox();
+        jLabelMaoPreferida = new javax.swing.JLabel();
+        jLabelPrincipalGolpe = new javax.swing.JLabel();
+        jComboBoxPrincipalGolpe = new javax.swing.JComboBox();
         jTextFieldEnvergadura = new javax.swing.JTextField();
         jLabelEnvergadura = new javax.swing.JLabel();
-        jLabelTotalLutas = new javax.swing.JLabel();
-        jTextFieldTotalLutas = new javax.swing.JTextField();
+        jLabelTotalPartidas = new javax.swing.JLabel();
+        jTextFieldTotalPartidas = new javax.swing.JTextField();
         jTextFieldTotalVitorias = new javax.swing.JTextField();
         jLabelTotalVitorias = new javax.swing.JLabel();
-        jTextFieldTotalNocaute = new javax.swing.JTextField();
-        jLabelTotalVitoriasNocaute = new javax.swing.JLabel();
-        jTextFieldTotalEmpates = new javax.swing.JTextField();
-        jLabelTotalEmpates = new javax.swing.JLabel();
-        jLabelTotalDerrotas = new javax.swing.JLabel();
         jTextFieldTotalDerrotas = new javax.swing.JTextField();
-        jLabelTotalDesistencias = new javax.swing.JLabel();
-        jTextFieldTotalDesistencias = new javax.swing.JTextField();
-        jTextFieldCategoriaPeso = new javax.swing.JTextField();
+        jLabelTotalDerrotas = new javax.swing.JLabel();
+        jTextFieldVelocidadeMediaSaque = new javax.swing.JTextField();
+        jLabelVelocidadeMediaSaque = new javax.swing.JLabel();
+        jLabelPosicaoRanking = new javax.swing.JLabel();
+        jTextFieldPosicaoRanking = new javax.swing.JTextField();
+        jLabelEmpunhadura = new javax.swing.JLabel();
         jLabelPremiacoes = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jListPremiacoes = new javax.swing.JList();
         jButtonAdicionarPremiacao = new javax.swing.JButton();
         jButtonRemoverPremiacao = new javax.swing.JButton();
+        jComboBoxMaoPreferida = new javax.swing.JComboBox();
+        jComboBoxEmpunhadura = new javax.swing.JComboBox();
         jButtonAlterar = new javax.swing.JButton();
         jButtonCancelar = new javax.swing.JButton();
         jButtonExcluir = new javax.swing.JButton();
         jButtonSalvar = new javax.swing.JButton();
         jButtonPesquisar = new javax.swing.JButton();
-        jLabelListaBoxeadores = new javax.swing.JLabel();
+        jLabelListaTenistas = new javax.swing.JLabel();
         jScrollPane4 = new javax.swing.JScrollPane();
-        jTableListaBoxeadores = new javax.swing.JTable();
+        jTableListaTenistas = new javax.swing.JTable();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -769,36 +972,75 @@ public class CadastroBoxeador extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Endereço", jPanel2);
 
-        jLabelCategoria.setText("Categoria:");
+        jLabelTipoQuadraPreferida.setText("Tipo de Quadra Preferida:");
 
-        jComboBoxCategoria.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Amador", "Profissional" }));
-        jComboBoxCategoria.addActionListener(new java.awt.event.ActionListener() {
+        jComboBoxTipoQuadraPreferida.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Saibro", "Piso duro", "Grama" }));
+        jComboBoxTipoQuadraPreferida.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jComboBoxCategoriaActionPerformed(evt);
+                jComboBoxTipoQuadraPreferidaActionPerformed(evt);
             }
         });
 
-        jLabelCategoriaPeso.setText("Categoria (Peso):");
+        jLabelMaoPreferida.setText("Mão Prefererida para Jogar:");
 
-        jLabelEstilo.setText("Estilo:");
+        jLabelPrincipalGolpe.setText("Principal Golpe:");
 
-        jComboBoxEstilo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Ortodoxo (destro)", "Southpaw (canhoto)" }));
+        jComboBoxPrincipalGolpe.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Backhand", "Drive", "Drop shot", "Forehand", "Lob", "Overhead", "Passing shot", "Slice", "Smash", "Topspin" }));
+        jComboBoxPrincipalGolpe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxPrincipalGolpeActionPerformed(evt);
+            }
+        });
+
+        jTextFieldEnvergadura.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldEnvergaduraActionPerformed(evt);
+            }
+        });
 
         jLabelEnvergadura.setText("Envergadura:");
 
-        jLabelTotalLutas.setText("Total de Lutas:");
+        jLabelTotalPartidas.setText("Total de Partidas:");
+
+        jTextFieldTotalPartidas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldTotalPartidasActionPerformed(evt);
+            }
+        });
+
+        jTextFieldTotalVitorias.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldTotalVitoriasActionPerformed(evt);
+            }
+        });
 
         jLabelTotalVitorias.setText("Total de Vitórias:");
 
-        jLabelTotalVitoriasNocaute.setText("Total de Vitórias por Nocaute:");
-
-        jLabelTotalEmpates.setText("Total de Empates:");
+        jTextFieldTotalDerrotas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldTotalDerrotasActionPerformed(evt);
+            }
+        });
 
         jLabelTotalDerrotas.setText("Total de Derrotas:");
 
-        jLabelTotalDesistencias.setText("Total de Desistencias:");
+        jTextFieldVelocidadeMediaSaque.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldVelocidadeMediaSaqueActionPerformed(evt);
+            }
+        });
 
-        jTextFieldCategoriaPeso.setEnabled(false);
+        jLabelVelocidadeMediaSaque.setText("Velocidade Média do Saque:");
+
+        jLabelPosicaoRanking.setText("Posição no Ranking:");
+
+        jTextFieldPosicaoRanking.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextFieldPosicaoRankingActionPerformed(evt);
+            }
+        });
+
+        jLabelEmpunhadura.setText("Empunhadura:");
 
         jLabelPremiacoes.setText("Premiações:");
 
@@ -818,6 +1060,20 @@ public class CadastroBoxeador extends javax.swing.JFrame {
             }
         });
 
+        jComboBoxMaoPreferida.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Direita", "Esquerda", "Ambas" }));
+        jComboBoxMaoPreferida.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxMaoPreferidaActionPerformed(evt);
+            }
+        });
+
+        jComboBoxEmpunhadura.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "L0", "L1", "L2", "L3", "L4", "L5" }));
+        jComboBoxEmpunhadura.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jComboBoxEmpunhaduraActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -826,92 +1082,91 @@ public class CadastroBoxeador extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabelEnvergadura)
-                    .addComponent(jLabelCategoria)
-                    .addComponent(jLabelCategoriaPeso)
-                    .addComponent(jLabelEstilo)
-                    .addComponent(jLabelTotalLutas)
+                    .addComponent(jLabelTipoQuadraPreferida)
+                    .addComponent(jLabelMaoPreferida)
+                    .addComponent(jLabelPrincipalGolpe)
+                    .addComponent(jLabelTotalPartidas)
                     .addComponent(jLabelTotalVitorias)
-                    .addComponent(jLabelTotalVitoriasNocaute)
-                    .addComponent(jLabelTotalEmpates)
                     .addComponent(jLabelTotalDerrotas)
-                    .addComponent(jLabelTotalDesistencias))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                    .addComponent(jLabelVelocidadeMediaSaque)
+                    .addComponent(jLabelPosicaoRanking)
+                    .addComponent(jLabelEmpunhadura))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextFieldTotalDesistencias, javax.swing.GroupLayout.DEFAULT_SIZE, 307, Short.MAX_VALUE)
-                    .addComponent(jTextFieldTotalDerrotas, javax.swing.GroupLayout.DEFAULT_SIZE, 307, Short.MAX_VALUE)
-                    .addComponent(jTextFieldTotalEmpates, javax.swing.GroupLayout.DEFAULT_SIZE, 307, Short.MAX_VALUE)
-                    .addComponent(jTextFieldTotalNocaute, javax.swing.GroupLayout.DEFAULT_SIZE, 307, Short.MAX_VALUE)
-                    .addComponent(jTextFieldTotalVitorias, javax.swing.GroupLayout.DEFAULT_SIZE, 307, Short.MAX_VALUE)
-                    .addComponent(jTextFieldTotalLutas, javax.swing.GroupLayout.DEFAULT_SIZE, 307, Short.MAX_VALUE)
-                    .addComponent(jTextFieldEnvergadura, javax.swing.GroupLayout.DEFAULT_SIZE, 307, Short.MAX_VALUE)
-                    .addComponent(jComboBoxEstilo, 0, 243, Short.MAX_VALUE)
-                    .addComponent(jTextFieldCategoriaPeso, javax.swing.GroupLayout.DEFAULT_SIZE, 307, Short.MAX_VALUE)
-                    .addComponent(jComboBoxCategoria, 0, 307, Short.MAX_VALUE))
+                    .addComponent(jTextFieldPosicaoRanking)
+                    .addComponent(jTextFieldVelocidadeMediaSaque)
+                    .addComponent(jTextFieldTotalDerrotas)
+                    .addComponent(jTextFieldTotalVitorias)
+                    .addComponent(jTextFieldTotalPartidas)
+                    .addComponent(jTextFieldEnvergadura)
+                    .addComponent(jComboBoxPrincipalGolpe, 0, 1, Short.MAX_VALUE)
+                    .addComponent(jComboBoxTipoQuadraPreferida, 0, 158, Short.MAX_VALUE)
+                    .addComponent(jComboBoxMaoPreferida, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jComboBoxEmpunhadura, javax.swing.GroupLayout.Alignment.TRAILING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabelPremiacoes)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jButtonRemoverPremiacao, javax.swing.GroupLayout.Alignment.LEADING, 0, 0, Short.MAX_VALUE)
-                            .addComponent(jButtonAdicionarPremiacao, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addComponent(jLabelPremiacoes)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 237, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jButtonRemoverPremiacao, javax.swing.GroupLayout.Alignment.LEADING, 0, 0, Short.MAX_VALUE)
+                    .addComponent(jButtonAdicionarPremiacao, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(20, 20, 20)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jComboBoxCategoria, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabelCategoria)
+                            .addComponent(jComboBoxTipoQuadraPreferida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelTipoQuadraPreferida)
                             .addComponent(jLabelPremiacoes))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabelCategoriaPeso)
-                            .addComponent(jTextFieldCategoriaPeso, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabelMaoPreferida)
+                            .addComponent(jComboBoxMaoPreferida, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jComboBoxEstilo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabelEstilo))
+                            .addComponent(jComboBoxPrincipalGolpe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabelPrincipalGolpe))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabelEnvergadura)
                             .addComponent(jTextFieldEnvergadura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabelTotalLutas)
-                            .addComponent(jTextFieldTotalLutas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabelTotalPartidas)
+                            .addComponent(jTextFieldTotalPartidas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabelTotalVitorias)
                             .addComponent(jTextFieldTotalVitorias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabelTotalVitoriasNocaute)
-                            .addComponent(jTextFieldTotalNocaute, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabelTotalEmpates)
-                            .addComponent(jTextFieldTotalEmpates, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabelTotalDerrotas)
                             .addComponent(jTextFieldTotalDerrotas, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabelTotalDesistencias)
-                            .addComponent(jTextFieldTotalDesistencias, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel3Layout.createSequentialGroup()
+                            .addComponent(jLabelVelocidadeMediaSaque)
+                            .addComponent(jTextFieldVelocidadeMediaSaque, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabelPosicaoRanking)
+                            .addComponent(jTextFieldPosicaoRanking, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabelEmpunhadura)
+                            .addComponent(jComboBoxEmpunhadura, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(46, 46, 46)
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(jButtonAdicionarPremiacao)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButtonRemoverPremiacao))
-                            .addComponent(jScrollPane2))))
+                        .addComponent(jButtonAdicionarPremiacao)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButtonRemoverPremiacao))
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addGap(35, 35, 35)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(38, Short.MAX_VALUE))
         );
 
@@ -952,9 +1207,9 @@ public class CadastroBoxeador extends javax.swing.JFrame {
             }
         });
 
-        jLabelListaBoxeadores.setText("Lista de Boxeadores:");
+        jLabelListaTenistas.setText("Lista de Tenistas:");
 
-        jTableListaBoxeadores.setModel(new javax.swing.table.DefaultTableModel 
+        jTableListaTenistas.setModel(new javax.swing.table.DefaultTableModel 
             (
                 null,
                 new String [] {
@@ -967,12 +1222,12 @@ public class CadastroBoxeador extends javax.swing.JFrame {
                     return false;
                 }
             });
-            jTableListaBoxeadores.addMouseListener(new java.awt.event.MouseAdapter() {
+            jTableListaTenistas.addMouseListener(new java.awt.event.MouseAdapter() {
                 public void mouseClicked(java.awt.event.MouseEvent evt) {
-                    jTableListaBoxeadoresMouseClicked(evt);
+                    jTableListaTenistasMouseClicked(evt);
                 }
             });
-            jScrollPane4.setViewportView(jTableListaBoxeadores);
+            jScrollPane4.setViewportView(jTableListaTenistas);
 
             javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
             getContentPane().setLayout(layout);
@@ -983,7 +1238,7 @@ public class CadastroBoxeador extends javax.swing.JFrame {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabelListaBoxeadores)
+                                .addComponent(jLabelListaTenistas)
                                 .addGroup(layout.createSequentialGroup()
                                     .addComponent(jButtonNovo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1015,7 +1270,7 @@ public class CadastroBoxeador extends javax.swing.JFrame {
                         .addComponent(jButtonSalvar)
                         .addComponent(jButtonCancelar))
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                    .addComponent(jLabelListaBoxeadores)
+                    .addComponent(jLabelListaTenistas)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -1026,12 +1281,12 @@ public class CadastroBoxeador extends javax.swing.JFrame {
             pack();
         }// </editor-fold>//GEN-END:initComponents
 
-    private void jComboBoxCategoriaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxCategoriaActionPerformed
-        this.atualizarCategoriaPeso();
-    }//GEN-LAST:event_jComboBoxCategoriaActionPerformed
+    private void jComboBoxTipoQuadraPreferidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxTipoQuadraPreferidaActionPerformed
+        
+    }//GEN-LAST:event_jComboBoxTipoQuadraPreferidaActionPerformed
 
     private void jButtonNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNovoActionPerformed
-        umBoxeador = null;
+        umTenista = null;
         modoAlteracao = true;
         novoRegistro = true;
         this.limparCampos();
@@ -1061,7 +1316,7 @@ public class CadastroBoxeador extends javax.swing.JFrame {
     }//GEN-LAST:event_jTextFieldPesoPropertyChange
 
     private void jTextFieldPesoFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_jTextFieldPesoFocusLost
-        this.atualizarCategoriaPeso();
+       
     }//GEN-LAST:event_jTextFieldPesoFocusLost
 
     private void jButtonAlterarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonAlterarActionPerformed
@@ -1072,10 +1327,10 @@ public class CadastroBoxeador extends javax.swing.JFrame {
     }//GEN-LAST:event_jButtonAlterarActionPerformed
 
     private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
-        this.controleBoxeador.remover(umBoxeador);
-        umBoxeador = null;
+        this.controleTenista.remover(umTenista);
+        umTenista = null;
         this.limparCampos();
-        this.carregarListaBoxeadores();
+        this.carregarListaTenistas();
         this.habilitarDesabilitarCampos();
     }//GEN-LAST:event_jButtonExcluirActionPerformed
 
@@ -1095,19 +1350,19 @@ private void jButtonRemoverTelefoneActionPerformed(java.awt.event.ActionEvent ev
 }//GEN-LAST:event_jButtonRemoverTelefoneActionPerformed
 
 private void jButtonPesquisarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonPesquisarActionPerformed
-    String pesquisa = JOptionPane.showInputDialog("Informe o nome do Boxeador.");
+    String pesquisa = JOptionPane.showInputDialog("Informe o nome do Tenista.");
     if (pesquisa != null) {
-        this.pesquisarBoxeador(pesquisa);
+        this.pesquisarTenista(pesquisa);
     }
 }//GEN-LAST:event_jButtonPesquisarActionPerformed
 
-    private void pesquisarBoxeador(String nome) {
-        Boxeador boxeadorPesquisado = controleBoxeador.pesquisar(nome);
+    private void pesquisarTenista(String nome) {
+        Tenista tenistaPesquisado = controleTenista.pesquisar(nome);
 
-        if (boxeadorPesquisado == null) {
-            exibirInformacao("Boxeador não encontrado.");
+        if (tenistaPesquisado == null) {
+            exibirInformacao("Tenista não encontrado.");
         } else {
-            this.umBoxeador = boxeadorPesquisado;
+            this.umTenista = tenistaPesquisado;
             this.preencherCampos();
             this.habilitarDesabilitarCampos();
         }
@@ -1128,17 +1383,53 @@ private void jButtonRemoverPremiacaoActionPerformed(java.awt.event.ActionEvent e
     }
 }//GEN-LAST:event_jButtonRemoverPremiacaoActionPerformed
 
-private void jTableListaBoxeadoresMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableListaBoxeadoresMouseClicked
-    if (jTableListaBoxeadores.isEnabled()) {
-        DefaultTableModel model = (DefaultTableModel) jTableListaBoxeadores.getModel();
-        String nome = (String) model.getValueAt(jTableListaBoxeadores.getSelectedRow(), 0);
-        this.pesquisarBoxeador(nome);
+private void jTableListaTenistasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableListaTenistasMouseClicked
+    if (jTableListaTenistas.isEnabled()) {
+        DefaultTableModel model = (DefaultTableModel) jTableListaTenistas.getModel();
+        String nome = (String) model.getValueAt(jTableListaTenistas.getSelectedRow(), 0);
+        this.pesquisarTenista(nome);
     }
-}//GEN-LAST:event_jTableListaBoxeadoresMouseClicked
+}//GEN-LAST:event_jTableListaTenistasMouseClicked
 
 private void jTextFieldDataNascimentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldDataNascimentoActionPerformed
 // TODO add your handling code here:
 }//GEN-LAST:event_jTextFieldDataNascimentoActionPerformed
+
+    private void jTextFieldTotalDerrotasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldTotalDerrotasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldTotalDerrotasActionPerformed
+
+    private void jTextFieldVelocidadeMediaSaqueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldVelocidadeMediaSaqueActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldVelocidadeMediaSaqueActionPerformed
+
+    private void jTextFieldPosicaoRankingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldPosicaoRankingActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldPosicaoRankingActionPerformed
+
+    private void jTextFieldTotalVitoriasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldTotalVitoriasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldTotalVitoriasActionPerformed
+
+    private void jTextFieldEnvergaduraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldEnvergaduraActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldEnvergaduraActionPerformed
+
+    private void jTextFieldTotalPartidasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextFieldTotalPartidasActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextFieldTotalPartidasActionPerformed
+
+    private void jComboBoxEmpunhaduraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxEmpunhaduraActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxEmpunhaduraActionPerformed
+
+    private void jComboBoxPrincipalGolpeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxPrincipalGolpeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxPrincipalGolpeActionPerformed
+
+    private void jComboBoxMaoPreferidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBoxMaoPreferidaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBoxMaoPreferidaActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButtonAdicionarPremiacao;
@@ -1151,40 +1442,42 @@ private void jTextFieldDataNascimentoActionPerformed(java.awt.event.ActionEvent 
     private javax.swing.JButton jButtonRemoverPremiacao;
     private javax.swing.JButton jButtonRemoverTelefone;
     private javax.swing.JButton jButtonSalvar;
-    private javax.swing.JComboBox jComboBoxCategoria;
+    private javax.swing.JComboBox jComboBoxEmpunhadura;
     private javax.swing.JComboBox jComboBoxEstado;
-    private javax.swing.JComboBox jComboBoxEstilo;
+    private javax.swing.JComboBox jComboBoxMaoPreferida;
+    private javax.swing.JComboBox jComboBoxPrincipalGolpe;
     private javax.swing.JComboBox jComboBoxSexo;
+    private javax.swing.JComboBox jComboBoxTipoQuadraPreferida;
     private javax.swing.JLabel jLabelAltura;
     private javax.swing.JLabel jLabelBairro;
-    private javax.swing.JLabel jLabelCategoria;
-    private javax.swing.JLabel jLabelCategoriaPeso;
     private javax.swing.JLabel jLabelCep;
     private javax.swing.JLabel jLabelCidade;
     private javax.swing.JLabel jLabelComplemento;
     private javax.swing.JLabel jLabelCpf;
     private javax.swing.JLabel jLabelDataNascimento;
+    private javax.swing.JLabel jLabelEmpunhadura;
     private javax.swing.JLabel jLabelEnvergadura;
     private javax.swing.JLabel jLabelEstado;
-    private javax.swing.JLabel jLabelEstilo;
-    private javax.swing.JLabel jLabelListaBoxeadores;
+    private javax.swing.JLabel jLabelListaTenistas;
     private javax.swing.JLabel jLabelLogradouro;
+    private javax.swing.JLabel jLabelMaoPreferida;
     private javax.swing.JLabel jLabelNome;
     private javax.swing.JLabel jLabelNomeMae;
     private javax.swing.JLabel jLabelNomePai;
     private javax.swing.JLabel jLabelNumero;
     private javax.swing.JLabel jLabelPais;
     private javax.swing.JLabel jLabelPeso;
+    private javax.swing.JLabel jLabelPosicaoRanking;
     private javax.swing.JLabel jLabelPremiacoes;
+    private javax.swing.JLabel jLabelPrincipalGolpe;
     private javax.swing.JLabel jLabelRg;
     private javax.swing.JLabel jLabelSexo;
     private javax.swing.JLabel jLabelTelefones;
+    private javax.swing.JLabel jLabelTipoQuadraPreferida;
     private javax.swing.JLabel jLabelTotalDerrotas;
-    private javax.swing.JLabel jLabelTotalDesistencias;
-    private javax.swing.JLabel jLabelTotalEmpates;
-    private javax.swing.JLabel jLabelTotalLutas;
+    private javax.swing.JLabel jLabelTotalPartidas;
     private javax.swing.JLabel jLabelTotalVitorias;
-    private javax.swing.JLabel jLabelTotalVitoriasNocaute;
+    private javax.swing.JLabel jLabelVelocidadeMediaSaque;
     private javax.swing.JList jListPremiacoes;
     private javax.swing.JList jListTelefones;
     private javax.swing.JPanel jPanel1;
@@ -1196,10 +1489,9 @@ private void jTextFieldDataNascimentoActionPerformed(java.awt.event.ActionEvent 
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTable jTableListaBoxeadores;
+    private javax.swing.JTable jTableListaTenistas;
     private javax.swing.JTextField jTextFieldAltura;
     private javax.swing.JTextField jTextFieldBairro;
-    private javax.swing.JTextField jTextFieldCategoriaPeso;
     private javax.swing.JTextField jTextFieldCep;
     private javax.swing.JTextField jTextFieldCidade;
     private javax.swing.JTextField jTextFieldComplemento;
@@ -1213,12 +1505,11 @@ private void jTextFieldDataNascimentoActionPerformed(java.awt.event.ActionEvent 
     private javax.swing.JTextField jTextFieldNumero;
     private javax.swing.JTextField jTextFieldPais;
     private javax.swing.JTextField jTextFieldPeso;
+    private javax.swing.JTextField jTextFieldPosicaoRanking;
     private javax.swing.JTextField jTextFieldRg;
     private javax.swing.JTextField jTextFieldTotalDerrotas;
-    private javax.swing.JTextField jTextFieldTotalDesistencias;
-    private javax.swing.JTextField jTextFieldTotalEmpates;
-    private javax.swing.JTextField jTextFieldTotalLutas;
-    private javax.swing.JTextField jTextFieldTotalNocaute;
+    private javax.swing.JTextField jTextFieldTotalPartidas;
     private javax.swing.JTextField jTextFieldTotalVitorias;
+    private javax.swing.JTextField jTextFieldVelocidadeMediaSaque;
     // End of variables declaration//GEN-END:variables
 }

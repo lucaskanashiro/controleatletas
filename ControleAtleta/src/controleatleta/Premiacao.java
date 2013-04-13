@@ -2,20 +2,20 @@ package controleatleta;
 
 public class Premiacao {
 
-    private String titulo;
+    private String tituloTorneio;
     private int ano;
 
-    public Premiacao(String titulo, int ano) {
-        this.titulo = titulo;
+    public Premiacao(String tituloTorneio, int ano) {
+        this.tituloTorneio = tituloTorneio;
         this.ano = ano;
     }
 
-    public String getTitulo() {
-        return titulo;
+    public String getTituloTorneio() {
+        return tituloTorneio;
     }
 
-    public void setTitulo(String titulo) {
-        this.titulo = titulo;
+    public void setTitulo(String tituloTorneio) {
+        this.tituloTorneio = tituloTorneio;
     }
 
     public int getAno() {
@@ -28,6 +28,6 @@ public class Premiacao {
     
     @Override
     public String toString() {
-        return this.ano + " - " + this.titulo;
+        return this.ano + " - " + this.tituloTorneio;
     }
 }

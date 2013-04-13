@@ -51,7 +51,7 @@
               <Group type="103" groupAlignment="1" max="-2" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabelListaBoxeadores" min="-2" max="-2" attributes="1"/>
+                          <Component id="jLabelListaTenistas" min="-2" max="-2" attributes="1"/>
                           <Group type="102" alignment="0" attributes="0">
                               <Component id="jButtonNovo" linkSize="1" max="32767" attributes="1"/>
                               <EmptySpace max="-2" attributes="0"/>
@@ -87,7 +87,7 @@
                   <Component id="jButtonCancelar" alignment="3" min="-2" max="-2" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jLabelListaBoxeadores" min="-2" max="-2" attributes="0"/>
+              <Component id="jLabelListaTenistas" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jScrollPane4" min="-2" pref="124" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
@@ -560,40 +560,37 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabelEnvergadura" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabelCategoria" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabelCategoriaPeso" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabelEstilo" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabelTotalLutas" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabelTipoQuadraPreferida" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabelMaoPreferida" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabelPrincipalGolpe" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabelTotalPartidas" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabelTotalVitorias" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabelTotalVitoriasNocaute" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabelTotalEmpates" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabelTotalDerrotas" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabelTotalDesistencias" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabelVelocidadeMediaSaque" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabelPosicaoRanking" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="jLabelEmpunhadura" alignment="0" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jTextFieldTotalDesistencias" alignment="0" pref="307" max="32767" attributes="1"/>
-                          <Component id="jTextFieldTotalDerrotas" alignment="0" pref="307" max="32767" attributes="1"/>
-                          <Component id="jTextFieldTotalEmpates" alignment="0" pref="307" max="32767" attributes="1"/>
-                          <Component id="jTextFieldTotalNocaute" alignment="0" pref="307" max="32767" attributes="1"/>
-                          <Component id="jTextFieldTotalVitorias" alignment="0" pref="307" max="32767" attributes="1"/>
-                          <Component id="jTextFieldTotalLutas" alignment="0" pref="307" max="32767" attributes="1"/>
-                          <Component id="jTextFieldEnvergadura" alignment="0" pref="307" max="32767" attributes="1"/>
-                          <Component id="jComboBoxEstilo" alignment="0" pref="243" max="32767" attributes="1"/>
-                          <Component id="jTextFieldCategoriaPeso" alignment="0" pref="307" max="32767" attributes="1"/>
-                          <Component id="jComboBoxCategoria" alignment="0" pref="307" max="32767" attributes="1"/>
+                          <Component id="jTextFieldPosicaoRanking" alignment="0" max="32767" attributes="1"/>
+                          <Component id="jTextFieldVelocidadeMediaSaque" alignment="0" max="32767" attributes="1"/>
+                          <Component id="jTextFieldTotalDerrotas" alignment="0" max="32767" attributes="1"/>
+                          <Component id="jTextFieldTotalVitorias" alignment="0" max="32767" attributes="1"/>
+                          <Component id="jTextFieldTotalPartidas" alignment="0" max="32767" attributes="1"/>
+                          <Component id="jTextFieldEnvergadura" alignment="0" max="32767" attributes="1"/>
+                          <Component id="jComboBoxPrincipalGolpe" alignment="0" pref="0" max="32767" attributes="1"/>
+                          <Component id="jComboBoxTipoQuadraPreferida" alignment="0" pref="158" max="32767" attributes="1"/>
+                          <Component id="jComboBoxMaoPreferida" alignment="1" max="32767" attributes="0"/>
+                          <Component id="jComboBoxEmpunhadura" alignment="1" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="jLabelPremiacoes" min="-2" max="-2" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="jScrollPane2" min="-2" pref="237" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                  <Component id="jButtonRemoverPremiacao" alignment="0" min="0" pref="0" max="32767" attributes="1"/>
-                                  <Component id="jButtonAdicionarPremiacao" alignment="0" min="-2" pref="58" max="-2" attributes="1"/>
-                              </Group>
-                          </Group>
+                      <Component id="jLabelPremiacoes" min="-2" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Component id="jScrollPane2" min="-2" pref="237" max="-2" attributes="0"/>
+                      <EmptySpace max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="jButtonRemoverPremiacao" alignment="0" min="0" pref="0" max="32767" attributes="1"/>
+                          <Component id="jButtonAdicionarPremiacao" alignment="0" min="-2" pref="58" max="-2" attributes="1"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
                   </Group>
@@ -601,24 +598,24 @@
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                  <Group type="102" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jComboBoxCategoria" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabelCategoria" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jComboBoxTipoQuadraPreferida" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabelTipoQuadraPreferida" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabelPremiacoes" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabelCategoriaPeso" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTextFieldCategoriaPeso" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabelMaoPreferida" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jComboBoxMaoPreferida" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jComboBoxEstilo" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jLabelEstilo" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jComboBoxPrincipalGolpe" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabelPrincipalGolpe" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
@@ -627,8 +624,8 @@
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabelTotalLutas" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTextFieldTotalLutas" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabelTotalPartidas" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jTextFieldTotalPartidas" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
@@ -637,35 +634,34 @@
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabelTotalVitoriasNocaute" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTextFieldTotalNocaute" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabelTotalEmpates" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTextFieldTotalEmpates" alignment="3" min="-2" max="-2" attributes="0"/>
-                              </Group>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="3" attributes="0">
                                   <Component id="jLabelTotalDerrotas" alignment="3" min="-2" max="-2" attributes="0"/>
                                   <Component id="jTextFieldTotalDerrotas" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="jLabelTotalDesistencias" alignment="3" min="-2" max="-2" attributes="0"/>
-                                  <Component id="jTextFieldTotalDesistencias" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabelVelocidadeMediaSaque" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jTextFieldVelocidadeMediaSaque" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jLabelPosicaoRanking" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jTextFieldPosicaoRanking" alignment="3" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="3" attributes="0">
+                                  <Component id="jLabelEmpunhadura" alignment="3" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jComboBoxEmpunhadura" alignment="3" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
                               <EmptySpace min="-2" pref="46" max="-2" attributes="0"/>
-                              <Group type="103" groupAlignment="0" attributes="0">
-                                  <Group type="102" alignment="0" attributes="0">
-                                      <Component id="jButtonAdicionarPremiacao" min="-2" max="-2" attributes="0"/>
-                                      <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="jButtonRemoverPremiacao" min="-2" max="-2" attributes="0"/>
-                                  </Group>
-                                  <Component id="jScrollPane2" alignment="0" max="32767" attributes="0"/>
-                              </Group>
+                              <Component id="jButtonAdicionarPremiacao" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="jButtonRemoverPremiacao" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                              <Component id="jScrollPane2" min="-2" pref="308" max="-2" attributes="0"/>
                           </Group>
                       </Group>
                       <EmptySpace pref="38" max="32767" attributes="0"/>
@@ -674,96 +670,119 @@
             </DimensionLayout>
           </Layout>
           <SubComponents>
-            <Component class="javax.swing.JLabel" name="jLabelCategoria">
+            <Component class="javax.swing.JLabel" name="jLabelTipoQuadraPreferida">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Categoria:"/>
+                <Property name="text" type="java.lang.String" value="Tipo de Quadra Preferida:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JComboBox" name="jComboBoxCategoria">
+            <Component class="javax.swing.JComboBox" name="jComboBoxTipoQuadraPreferida">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="2">
-                    <StringItem index="0" value="Amador"/>
-                    <StringItem index="1" value="Profissional"/>
+                  <StringArray count="3">
+                    <StringItem index="0" value="Saibro"/>
+                    <StringItem index="1" value="Piso duro"/>
+                    <StringItem index="2" value="Grama"/>
                   </StringArray>
                 </Property>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jComboBoxCategoriaActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jComboBoxTipoQuadraPreferidaActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabelCategoriaPeso">
+            <Component class="javax.swing.JLabel" name="jLabelMaoPreferida">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Categoria (Peso):"/>
+                <Property name="text" type="java.lang.String" value="M&#xe3;o Prefererida para Jogar:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabelEstilo">
+            <Component class="javax.swing.JLabel" name="jLabelPrincipalGolpe">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Estilo:"/>
+                <Property name="text" type="java.lang.String" value="Principal Golpe:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JComboBox" name="jComboBoxEstilo">
+            <Component class="javax.swing.JComboBox" name="jComboBoxPrincipalGolpe">
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="2">
-                    <StringItem index="0" value="Ortodoxo (destro)"/>
-                    <StringItem index="1" value="Southpaw (canhoto)"/>
+                  <StringArray count="10">
+                    <StringItem index="0" value="Backhand"/>
+                    <StringItem index="1" value="Drive"/>
+                    <StringItem index="2" value="Drop shot"/>
+                    <StringItem index="3" value="Forehand"/>
+                    <StringItem index="4" value="Lob"/>
+                    <StringItem index="5" value="Overhead"/>
+                    <StringItem index="6" value="Passing shot"/>
+                    <StringItem index="7" value="Slice"/>
+                    <StringItem index="8" value="Smash"/>
+                    <StringItem index="9" value="Topspin"/>
                   </StringArray>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jComboBoxPrincipalGolpeActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextFieldEnvergadura">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldEnvergaduraActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabelEnvergadura">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Envergadura:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabelTotalLutas">
+            <Component class="javax.swing.JLabel" name="jLabelTotalPartidas">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Total de Lutas:"/>
+                <Property name="text" type="java.lang.String" value="Total de Partidas:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextFieldTotalLutas">
+            <Component class="javax.swing.JTextField" name="jTextFieldTotalPartidas">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldTotalPartidasActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="jTextFieldTotalVitorias">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldTotalVitoriasActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabelTotalVitorias">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Total de Vit&#xf3;rias:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextFieldTotalNocaute">
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLabelTotalVitoriasNocaute">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Total de Vit&#xf3;rias por Nocaute:"/>
-              </Properties>
-            </Component>
-            <Component class="javax.swing.JTextField" name="jTextFieldTotalEmpates">
-            </Component>
-            <Component class="javax.swing.JLabel" name="jLabelTotalEmpates">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Total de Empates:"/>
-              </Properties>
+            <Component class="javax.swing.JTextField" name="jTextFieldTotalDerrotas">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldTotalDerrotasActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabelTotalDerrotas">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Total de Derrotas:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextFieldTotalDerrotas">
+            <Component class="javax.swing.JTextField" name="jTextFieldVelocidadeMediaSaque">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldVelocidadeMediaSaqueActionPerformed"/>
+              </Events>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabelTotalDesistencias">
+            <Component class="javax.swing.JLabel" name="jLabelVelocidadeMediaSaque">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Total de Desistencias:"/>
+                <Property name="text" type="java.lang.String" value="Velocidade M&#xe9;dia do Saque:"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JTextField" name="jTextFieldTotalDesistencias">
-            </Component>
-            <Component class="javax.swing.JTextField" name="jTextFieldCategoriaPeso">
+            <Component class="javax.swing.JLabel" name="jLabelPosicaoRanking">
               <Properties>
-                <Property name="enabled" type="boolean" value="false"/>
+                <Property name="text" type="java.lang.String" value="Posi&#xe7;&#xe3;o no Ranking:"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="jTextFieldPosicaoRanking">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jTextFieldPosicaoRankingActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabelEmpunhadura">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Empunhadura:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabelPremiacoes">
@@ -801,6 +820,37 @@
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonRemoverPremiacaoActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="jComboBoxMaoPreferida">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="3">
+                    <StringItem index="0" value="Direita"/>
+                    <StringItem index="1" value="Esquerda"/>
+                    <StringItem index="2" value="Ambas"/>
+                  </StringArray>
+                </Property>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jComboBoxMaoPreferidaActionPerformed"/>
+              </Events>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="jComboBoxEmpunhadura">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="6">
+                    <StringItem index="0" value="L0"/>
+                    <StringItem index="1" value="L1"/>
+                    <StringItem index="2" value="L2"/>
+                    <StringItem index="3" value="L3"/>
+                    <StringItem index="4" value="L4"/>
+                    <StringItem index="5" value="L5"/>
+                  </StringArray>
+                </Property>
+              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jComboBoxEmpunhaduraActionPerformed"/>
               </Events>
             </Component>
           </SubComponents>
@@ -847,9 +897,9 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButtonPesquisarActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabelListaBoxeadores">
+    <Component class="javax.swing.JLabel" name="jLabelListaTenistas">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Lista de Boxeadores:"/>
+        <Property name="text" type="java.lang.String" value="Lista de Tenistas:"/>
       </Properties>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane4">
@@ -859,7 +909,7 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JTable" name="jTableListaBoxeadores">
+        <Component class="javax.swing.JTable" name="jTableListaTenistas">
           <Properties>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.RADConnectionPropertyEditor">
               <Connection code="new javax.swing.table.DefaultTableModel &#xd;&#xa;(&#xd;&#xa;    null,&#xd;&#xa;    new String [] {&#xd;&#xa;        &quot;Nome&quot;, &quot;CPF&quot;&#xd;&#xa;    }&#xd;&#xa;)&#xd;&#xa;{&#xd;&#xa;@Override    &#xd;&#xa;public boolean isCellEditable(int rowIndex, int mColIndex) {&#xd;&#xa;        return false;&#xd;&#xa;    }&#xd;&#xa;}" type="code"/>
@@ -872,7 +922,7 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jTableListaBoxeadoresMouseClicked"/>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jTableListaTenistasMouseClicked"/>
           </Events>
         </Component>
       </SubComponents>
