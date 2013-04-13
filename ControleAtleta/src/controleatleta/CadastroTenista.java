@@ -1022,7 +1022,7 @@ public class CadastroTenista extends javax.swing.JFrame {
             }
         });
 
-        jComboBoxMaoPreferida.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Direita", "Esquerda", "Ambas" }));
+        jComboBoxMaoPreferida.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Direita", "Esquerda" }));
         jComboBoxMaoPreferida.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboBoxMaoPreferidaActionPerformed(evt);
