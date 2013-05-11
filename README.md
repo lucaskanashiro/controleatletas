@@ -1,7 +1,7 @@
 Controle de Atetlas
 ===================
 
-Sistema de cadastro de atletas (para práticas de conceitos de orientação a
+Sistema de cadastro de Tenistas (para práticas de conceitos de orientação a
 objetos e técnicas de programação).
 
 
@@ -15,6 +15,7 @@ Autores
 ------
 
 Paulo Meirelles
+
 Lucas Kanashiro
 
 
