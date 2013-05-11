@@ -11,41 +11,7 @@ import javax.swing.ListSelectionModel;
 import javax.swing.table.DefaultTableModel;
 
 public class CadastroTenista extends javax.swing.JFrame {
-
-    private final int MAO_PREFERIDA_DIREITA_INDICE = 0;
-    private final char MAO_PREFERIDA_DIREITA = 'D';
-    private final int MAO_PREFERIDA_ESQUERDA_INDICE = 1;
-    private final char MAO_PREFERIDA_ESQUERDA = 'E';
-    private final int L0 = 0;
-    private final int L1 = 1;
-    private final int L2 = 2;
-    private final int L3 = 3;
-    private final int L4 = 4;
-    private final int L5 = 5;
-    private final char DESTRO = 'D';
-    private final int DESTRO_INDICE = 0;
-    private final char CANHOTO = 'C';
-    private final int CANHOTO_INDICE = 1;
-    private final int BACKHAND = 0;
-    private final int DRIVE = 1;
-    private final int DROPSHOT = 2;
-    private final int FOREHAND = 3;
-    private final int LOB = 4;
-    private final int OVERHEAD = 5;
-    private final int PASSINGSHOT = 6;
-    private final int SLICE = 7;
-    private final int SMASH = 8;
-    private final int TOPSPIN = 9;
-    private final char TIPO_QUADRA_SAIBRO = 'S';
-    private final int TIPO_QUADRA_SAIBRO_INDICE = 0;
-    private final char TIPO_QUADRA_PISO_DURO = 'P';
-    private final int TIPO_QUADRA_PISO_DURO_INDICE = 1;
-    private final char TIPO_QUADRA_GRAMA = 'G';
-    private final int TIPO_QUADRA_GRAMA_INDICE = 2;
-    private final byte SEXO_MASCULINO_INDICE = 0;
-    private final byte SEXO_FEMININO_INDICE = 1;
-    private final char SEXO_MASCULINO_VALOR = 'M';
-    private final char SEXO_FEMININO_VALOR = 'F';
+    
     private DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
     private ControleTenista controleTenista;
     private Tenista umTenista;
@@ -53,7 +19,7 @@ public class CadastroTenista extends javax.swing.JFrame {
     private boolean novoRegistro;
     private DefaultListModel telefonesListModel;
     private DefaultListModel premiacaoListModel;
-
+    
     public CadastroTenista() {
         initComponents();
         this.habilitarDesabilitarCampos();
@@ -140,86 +106,86 @@ public class CadastroTenista extends javax.swing.JFrame {
         }
 
         switch (umTenista.getSexo()) {
-            case SEXO_MASCULINO_VALOR:
-                jComboBoxSexo.setSelectedIndex(SEXO_MASCULINO_INDICE);
+            case Util.SEXO_MASCULINO_VALOR:
+                jComboBoxSexo.setSelectedIndex(Util.SEXO_MASCULINO_INDICE);
                 break;
-            case SEXO_FEMININO_VALOR:
-                jComboBoxSexo.setSelectedIndex(SEXO_FEMININO_INDICE);
+            case Util.SEXO_FEMININO_VALOR:
+                jComboBoxSexo.setSelectedIndex(Util.SEXO_FEMININO_INDICE);
                 break;
         }
 
         switch (umTenista.getTipoQuadraPreferida()) {
-            case TIPO_QUADRA_SAIBRO:
-                jComboBoxTipoQuadraPreferida.setSelectedIndex(TIPO_QUADRA_SAIBRO_INDICE);
+            case Util.TIPO_QUADRA_SAIBRO:
+                jComboBoxTipoQuadraPreferida.setSelectedIndex(Util.TIPO_QUADRA_SAIBRO_INDICE);
                 break;
-            case TIPO_QUADRA_PISO_DURO:
-                jComboBoxTipoQuadraPreferida.setSelectedIndex(TIPO_QUADRA_PISO_DURO_INDICE);
+            case Util.TIPO_QUADRA_PISO_DURO:
+                jComboBoxTipoQuadraPreferida.setSelectedIndex(Util.TIPO_QUADRA_PISO_DURO_INDICE);
                 break;
-            case TIPO_QUADRA_GRAMA:
-                jComboBoxTipoQuadraPreferida.setSelectedIndex(TIPO_QUADRA_GRAMA_INDICE);
+            case Util.TIPO_QUADRA_GRAMA:
+                jComboBoxTipoQuadraPreferida.setSelectedIndex(Util.TIPO_QUADRA_GRAMA_INDICE);
                 break;
         }
 
         switch (umTenista.getPrincipalGolpe()) {
-            case BACKHAND:
-                jComboBoxPrincipalGolpe.setSelectedIndex(BACKHAND);
+            case Util.BACKHAND:
+                jComboBoxPrincipalGolpe.setSelectedIndex(Util.BACKHAND);
                 break;
-            case DRIVE:
-                jComboBoxPrincipalGolpe.setSelectedIndex(DRIVE);
+            case Util.DRIVE:
+                jComboBoxPrincipalGolpe.setSelectedIndex(Util.DRIVE);
                 break;
-            case DROPSHOT:
-                jComboBoxPrincipalGolpe.setSelectedIndex(DROPSHOT);
+            case Util.DROPSHOT:
+                jComboBoxPrincipalGolpe.setSelectedIndex(Util.DROPSHOT);
                 break;
-            case FOREHAND:
-                jComboBoxPrincipalGolpe.setSelectedIndex(FOREHAND);
+            case Util.FOREHAND:
+                jComboBoxPrincipalGolpe.setSelectedIndex(Util.FOREHAND);
                 break;
-            case LOB:
-                jComboBoxPrincipalGolpe.setSelectedIndex(LOB);
+            case Util.LOB:
+                jComboBoxPrincipalGolpe.setSelectedIndex(Util.LOB);
                 break;
-            case OVERHEAD:
-                jComboBoxPrincipalGolpe.setSelectedIndex(OVERHEAD);
+            case Util.OVERHEAD:
+                jComboBoxPrincipalGolpe.setSelectedIndex(Util.OVERHEAD);
                 break;
-            case PASSINGSHOT:
-                jComboBoxPrincipalGolpe.setSelectedIndex(PASSINGSHOT);
+            case Util.PASSINGSHOT:
+                jComboBoxPrincipalGolpe.setSelectedIndex(Util.PASSINGSHOT);
                 break;
-            case SLICE:
-                jComboBoxPrincipalGolpe.setSelectedIndex(SLICE);
+            case Util.SLICE:
+                jComboBoxPrincipalGolpe.setSelectedIndex(Util.SLICE);
                 break;
-            case SMASH:
-                jComboBoxPrincipalGolpe.setSelectedIndex(SMASH);
+            case Util.SMASH:
+                jComboBoxPrincipalGolpe.setSelectedIndex(Util.SMASH);
                 break;
-            case TOPSPIN:
-                jComboBoxPrincipalGolpe.setSelectedIndex(TOPSPIN);
+            case Util.TOPSPIN:
+                jComboBoxPrincipalGolpe.setSelectedIndex(Util.TOPSPIN);
                 break;
         }
         
         switch(umTenista.getMaoPreferida()){
-            case DESTRO:
-                jComboBoxMaoPreferida.setSelectedIndex(DESTRO_INDICE);
+            case Util.DESTRO:
+                jComboBoxMaoPreferida.setSelectedIndex(Util.DESTRO_INDICE);
                 break;
-            case CANHOTO:
-                jComboBoxMaoPreferida.setSelectedIndex(CANHOTO_INDICE);
+            case Util.CANHOTO:
+                jComboBoxMaoPreferida.setSelectedIndex(Util.CANHOTO_INDICE);
                 break;
         }
         
         switch(umTenista.getEmpunhadura()){
-            case L0:
-                jComboBoxEmpunhadura.setSelectedIndex(L0);
+            case Util.L0:
+                jComboBoxEmpunhadura.setSelectedIndex(Util.L0);
                 break;
-            case L1:
-                jComboBoxEmpunhadura.setSelectedIndex(L1);
+            case Util.L1:
+                jComboBoxEmpunhadura.setSelectedIndex(Util.L1);
                 break;
-            case L2:
-                jComboBoxEmpunhadura.setSelectedIndex(L2);
+            case Util.L2:
+                jComboBoxEmpunhadura.setSelectedIndex(Util.L2);
                 break;
-            case L3:
-                jComboBoxEmpunhadura.setSelectedIndex(L3);
+            case Util.L3:
+                jComboBoxEmpunhadura.setSelectedIndex(Util.L3);
                 break;
-            case L4:
-                jComboBoxEmpunhadura.setSelectedIndex(L4);
+            case Util.L4:
+                jComboBoxEmpunhadura.setSelectedIndex(Util.L4);
                 break;
-            case L5:
-                jComboBoxEmpunhadura.setSelectedIndex(L5);
+            case Util.L5:
+                jComboBoxEmpunhadura.setSelectedIndex(Util.L5);
                 break;
         }
 
@@ -468,11 +434,11 @@ public class CadastroTenista extends javax.swing.JFrame {
         umTenista.setTotalVitorias(Integer.parseInt(jTextFieldTotalVitorias.getText()));
 
         switch (jComboBoxSexo.getSelectedIndex()) {
-            case SEXO_MASCULINO_INDICE:
-                umTenista.setSexo(SEXO_MASCULINO_VALOR);
+            case Util.SEXO_MASCULINO_INDICE:
+                umTenista.setSexo(Util.SEXO_MASCULINO_VALOR);
                 break;
-            case SEXO_FEMININO_INDICE:
-                umTenista.setSexo(SEXO_FEMININO_VALOR);
+            case Util.SEXO_FEMININO_INDICE:
+                umTenista.setSexo(Util.SEXO_FEMININO_VALOR);
                 break;
         }
         
@@ -481,77 +447,77 @@ public class CadastroTenista extends javax.swing.JFrame {
         }
 
         switch (jComboBoxTipoQuadraPreferida.getSelectedIndex()) {
-            case TIPO_QUADRA_SAIBRO_INDICE:
-                umTenista.setTipoQuadraPreferida(TIPO_QUADRA_SAIBRO);
+            case Util.TIPO_QUADRA_SAIBRO_INDICE:
+                umTenista.setTipoQuadraPreferida(Util.TIPO_QUADRA_SAIBRO);
                 break;
-            case TIPO_QUADRA_PISO_DURO_INDICE:
-                umTenista.setTipoQuadraPreferida(TIPO_QUADRA_PISO_DURO);
+            case Util.TIPO_QUADRA_PISO_DURO_INDICE:
+                umTenista.setTipoQuadraPreferida(Util.TIPO_QUADRA_PISO_DURO);
                 break;
-            case TIPO_QUADRA_GRAMA_INDICE:
-                umTenista.setTipoQuadraPreferida(TIPO_QUADRA_GRAMA);
+            case Util.TIPO_QUADRA_GRAMA_INDICE:
+                umTenista.setTipoQuadraPreferida(Util.TIPO_QUADRA_GRAMA);
                 break;
         }
 
         switch (jComboBoxPrincipalGolpe.getSelectedIndex()) {
-            case BACKHAND:
-                umTenista.setPrincipalGolpe(BACKHAND);
+            case Util.BACKHAND:
+                umTenista.setPrincipalGolpe(Util.BACKHAND);
                 break;
-            case DRIVE:
-                umTenista.setPrincipalGolpe(DRIVE);
+            case Util.DRIVE:
+                umTenista.setPrincipalGolpe(Util.DRIVE);
                 break;
-            case DROPSHOT:
-                umTenista.setPrincipalGolpe(DROPSHOT);
+            case Util.DROPSHOT:
+                umTenista.setPrincipalGolpe(Util.DROPSHOT);
                 break;
-            case FOREHAND:
-                umTenista.setPrincipalGolpe(FOREHAND);
+            case Util.FOREHAND:
+                umTenista.setPrincipalGolpe(Util.FOREHAND);
                 break;
-            case LOB:
-                umTenista.setPrincipalGolpe(LOB);
+            case Util.LOB:
+                umTenista.setPrincipalGolpe(Util.LOB);
                 break;
-            case OVERHEAD:
-                umTenista.setPrincipalGolpe(OVERHEAD);
+            case Util.OVERHEAD:
+                umTenista.setPrincipalGolpe(Util.OVERHEAD);
                 break;
-            case PASSINGSHOT:
-                umTenista.setPrincipalGolpe(PASSINGSHOT);
+            case Util.PASSINGSHOT:
+                umTenista.setPrincipalGolpe(Util.PASSINGSHOT);
                 break;
-            case SLICE:
-                umTenista.setPrincipalGolpe(SLICE);
+            case Util.SLICE:
+                umTenista.setPrincipalGolpe(Util.SLICE);
                 break;
-            case SMASH:
-                umTenista.setPrincipalGolpe(SMASH);
+            case Util.SMASH:
+                umTenista.setPrincipalGolpe(Util.SMASH);
                 break;
-            case TOPSPIN:
-                umTenista.setPrincipalGolpe(TOPSPIN);
+            case Util.TOPSPIN:
+                umTenista.setPrincipalGolpe(Util.TOPSPIN);
                 break;
         }
         
         switch(jComboBoxMaoPreferida.getSelectedIndex()){
-            case MAO_PREFERIDA_DIREITA_INDICE:
-                umTenista.setMaoPreferida(MAO_PREFERIDA_DIREITA);
+            case Util.MAO_PREFERIDA_DIREITA_INDICE:
+                umTenista.setMaoPreferida(Util.MAO_PREFERIDA_DIREITA);
                 break;
-            case MAO_PREFERIDA_ESQUERDA_INDICE:
-                umTenista.setMaoPreferida(MAO_PREFERIDA_ESQUERDA);
+            case Util.MAO_PREFERIDA_ESQUERDA_INDICE:
+                umTenista.setMaoPreferida(Util.MAO_PREFERIDA_ESQUERDA);
                 break;
         }
 
         switch(jComboBoxEmpunhadura.getSelectedIndex()){
-            case L0:
-                umTenista.setEmpunhadura(L0);
+            case Util.L0:
+                umTenista.setEmpunhadura(Util.L0);
                 break;
-            case L1:
-                umTenista.setEmpunhadura(L1);
+            case Util.L1:
+                umTenista.setEmpunhadura(Util.L1);
                 break;
-            case L2:
-                umTenista.setEmpunhadura(L2);
+            case Util.L2:
+                umTenista.setEmpunhadura(Util.L2);
                 break;
-            case L3:
-                umTenista.setEmpunhadura(L3);
+            case Util.L3:
+                umTenista.setEmpunhadura(Util.L3);
                 break;
-            case L4:
-                umTenista.setEmpunhadura(L4);
+            case Util.L4:
+                umTenista.setEmpunhadura(Util.L4);
                 break;
-            case L5:
-                umTenista.setEmpunhadura(L5);
+            case Util.L5:
+                umTenista.setEmpunhadura(Util.L5);
                 break;
         }
         
