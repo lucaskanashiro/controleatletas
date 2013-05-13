@@ -16,6 +16,10 @@ public class Tenista extends Atleta {
     private int posicaoRanking;
     private int empunhadura; // 0=L0, 1=L1, 2=L2, 3=L3, 4=L4, 5=L5
 
+    public Tenista(String nome){
+        super(nome);
+    }
+    
     public int getTotalPartidas() {
         return totalPartidas;
     }
@@ -94,10 +98,6 @@ public class Tenista extends Atleta {
 
     public void setPosicaoRanking(int posicaoRanking) {
         this.posicaoRanking = posicaoRanking;
-    }
-    
-    public Tenista(String nome){
-        super(nome);
     }
 
     public void setPrincipalGolpe(int principalGolpe) {
