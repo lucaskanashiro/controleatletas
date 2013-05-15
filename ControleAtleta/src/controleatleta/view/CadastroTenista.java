@@ -196,9 +196,9 @@ public class CadastroTenista extends javax.swing.JFrame {
 
     }
 
-    private boolean validarCampos() {     
+    private boolean validarDadosBasicos(){
         
-        if (jTextFieldNome.getText().trim().length() == 0) {
+        if(jTextFieldNome.getText().trim().length() == 0) {
             this.exibirInformacao("O valor do campo 'Nome' não foi informado.");
             jTextFieldNome.requestFocus();
             return false;
@@ -240,7 +240,12 @@ public class CadastroTenista extends javax.swing.JFrame {
             return false;
         }
         
-        if (!jTextFieldNumero.getText().equals("")) {
+        return true;
+    }
+    
+    private boolean validarDadosEndereco(){
+        
+         if (!jTextFieldNumero.getText().equals("")) {
             try {
                 Integer.parseInt(jTextFieldNumero.getText());
             } catch (Exception ex) {
@@ -249,6 +254,10 @@ public class CadastroTenista extends javax.swing.JFrame {
                 return false;
             }
         }
+         return true;
+    }
+    
+    private boolean validarDadosTenista(){
         
         try {
             Double.parseDouble(jTextFieldEnvergadura.getText());
@@ -328,6 +337,15 @@ public class CadastroTenista extends javax.swing.JFrame {
             return false;
         }
         
+        return true;
+    }
+    
+    private boolean validarCampos() {     
+        
+        validarDadosBasicos();
+        validarDadosEndereco();
+        validarDadosTenista();
+       
         return true;
     }
     
