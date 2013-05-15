@@ -1,4 +1,4 @@
-package controleatleta;
+package controleatleta.util;
 
 public class Util {
     
@@ -36,8 +36,8 @@ public class Util {
     public static final int L3 = 3;
     public static final char MAO_PREFERIDA_DIREITA = 'D';
     public static final int MAO_PREFERIDA_DIREITA_INDICE = 0;
-    final static char MAO_PREFERIDA_ESQUERDA = 'E';
-    final static int MAO_PREFERIDA_ESQUERDA_INDICE = 1;
+    public final static char MAO_PREFERIDA_ESQUERDA = 'E';
+    public final static int MAO_PREFERIDA_ESQUERDA_INDICE = 1;
     
     
 }

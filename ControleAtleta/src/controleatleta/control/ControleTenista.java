@@ -1,5 +1,6 @@
-package controleatleta;
+package controleatleta.control;
 
+import controleatleta.model.Tenista;
 import java.util.ArrayList;
 
 public class ControleTenista {

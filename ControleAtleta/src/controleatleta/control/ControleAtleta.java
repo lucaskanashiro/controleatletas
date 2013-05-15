@@ -1,4 +1,6 @@
-package controleatleta;
+package controleatleta.control;
+
+import controleatleta.view.CadastroTenista;
 
 public class ControleAtleta {
 

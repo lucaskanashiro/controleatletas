@@ -1,4 +1,4 @@
-package controleatleta;
+package controleatleta.model;
 
 import java.util.ArrayList;
 

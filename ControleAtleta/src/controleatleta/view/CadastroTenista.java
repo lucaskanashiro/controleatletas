@@ -1,5 +1,10 @@
-package controleatleta;
+package controleatleta.view;
 
+import controleatleta.control.ControleTenista;
+import controleatleta.model.Endereco;
+import controleatleta.model.Premiacao;
+import controleatleta.model.Tenista;
+import controleatleta.util.Util;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -1202,7 +1207,7 @@ public class CadastroTenista extends javax.swing.JFrame {
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                     .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 430, Short.MAX_VALUE)
+                    .addComponent(jTabbedPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 430, Short.MAX_VALUE)
                     .addContainerGap())
             );
 

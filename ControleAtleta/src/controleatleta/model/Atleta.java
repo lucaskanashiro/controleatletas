@@ -1,5 +1,6 @@
-package controleatleta;
+package controleatleta.model;
 
+import controleatleta.model.Endereco;
 import java.util.ArrayList;
 import java.util.Date;
 
