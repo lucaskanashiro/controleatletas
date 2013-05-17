@@ -35,82 +35,80 @@ public class CadastroTenista extends javax.swing.JFrame {
         this.jListPremiacoes.setModel(premiacaoListModel);
         this.jTableListaTenistas.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
     }
-
-    private void limparCampos() {
+    
+    private void limparCamposDadosBasicos(){
         jTextFieldAltura.setText("0.0");
-        jTextFieldBairro.setText(null);
-        jTextFieldCep.setText(null);
-        jTextFieldCidade.setText(null);
-        jTextFieldComplemento.setText(null);
-        jTextFieldCpf.setText(null);
         jTextFieldDataNascimento.setText(null);
-        jTextFieldEnvergadura.setText("0.0");
-        jComboBoxEstado.setSelectedIndex(0);
-        jTextFieldLogradouro.setText(null);
+        jTextFieldPeso.setText("0.0");
+        jTextFieldRg.setText(null);
+        telefonesListModel.clear();
+        jComboBoxSexo.setSelectedIndex(0);
+        jTextFieldCpf.setText(null);
         jTextFieldNome.setText(null);
         jTextFieldNomeMae.setText(null);
         jTextFieldNomePai.setText(null);
         jTextFieldNumero.setText("0");
         jTextFieldPais.setText(null);
-        jTextFieldPeso.setText("0.0");
-        jTextFieldRg.setText(null);
+    }
+    
+    private void limparCamposEndereco(){
+        jTextFieldBairro.setText(null);
+        jTextFieldCep.setText(null);
+        jTextFieldCidade.setText(null);
+        jTextFieldComplemento.setText(null);
+        jComboBoxEstado.setSelectedIndex(0);
+        jTextFieldLogradouro.setText(null);
+    }
+    
+    private void limparCamposTenista(){
+        jTextFieldEnvergadura.setText("0.0");
         jTextFieldPosicaoRanking.setText("0");
         jTextFieldVelocidadeMediaSaque.setText("0");
         jTextFieldTotalPartidas.setText("0");
         jTextFieldTotalDerrotas.setText("0");
         jTextFieldTotalVitorias.setText("0");
-        telefonesListModel.clear();
         premiacaoListModel.clear();
-        jComboBoxSexo.setSelectedIndex(0);
         jComboBoxTipoQuadraPreferida.setSelectedIndex(0);
         jComboBoxPrincipalGolpe.setSelectedIndex(0);
-        
     }
 
-    private void preencherCampos() {
-        ArrayList<String> telefones;
-        ArrayList<Premiacao> premiacoes;
-
-        jTextFieldAltura.setText(Double.toString(umTenista.getAltura()));
-        jTextFieldBairro.setText(umTenista.getEndereco().getBairro());
-        jTextFieldCep.setText(umTenista.getEndereco().getCep());
-        jTextFieldCidade.setText(umTenista.getEndereco().getCidade());
-        jTextFieldComplemento.setText(umTenista.getEndereco().getComplemento());
-        jTextFieldCpf.setText(umTenista.getCpf());
-        if (umTenista.getDataNascimento() == null) {
-            jTextFieldDataNascimento.setText(null);
-        } else {
-            jTextFieldDataNascimento.setText(dateFormat.format(umTenista.getDataNascimento()));
-        }
-        jTextFieldEnvergadura.setText(Double.toString(umTenista.getEnvergadura()));
-        jComboBoxEstado.setSelectedItem(umTenista.getEndereco().getEstado());
-        jTextFieldLogradouro.setText(umTenista.getEndereco().getLogradouro());
-        jTextFieldNome.setText(umTenista.getNome());
-        jTextFieldNomeMae.setText(umTenista.getNomeMae());
-        jTextFieldNomePai.setText(umTenista.getNomePai());
-        jTextFieldNumero.setText(umTenista.getEndereco().getNumero().toString());
-        jTextFieldPais.setText(umTenista.getEndereco().getPais());
-        jTextFieldPeso.setText(Double.toString(umTenista.getPeso()));
-        jTextFieldRg.setText(umTenista.getRg());
-        jTextFieldPosicaoRanking.setText(Integer.toString(umTenista.getTotalDerrotas()));
-        jTextFieldVelocidadeMediaSaque.setText(Float.toString(umTenista.getVelocidadeMediaSaque()));
-        jTextFieldTotalPartidas.setText(Integer.toString(umTenista.getTotalPartidas()));
-        jTextFieldTotalDerrotas.setText(Integer.toString(umTenista.getTotalDerrotas()));
-        jTextFieldTotalVitorias.setText(Integer.toString(umTenista.getTotalVitorias()));
-
-        telefonesListModel.clear();
-        telefones = umTenista.getTelefones();
-        for (String t : telefones) {
-            telefonesListModel.addElement(t);
-        }
-
-        premiacaoListModel.clear();
-        premiacoes = umTenista.getPremiacoes();
-        for (Premiacao p : premiacoes) {
-            premiacaoListModel.addElement(p);
-        }
-
-        switch (umTenista.getSexo()) {
+    private void limparCampos() {
+        limparCamposDadosBasicos();
+        limparCamposEndereco();
+        limparCamposTenista();
+      
+        //jTextFieldAltura.setText("0.0");
+        /*jTextFieldBairro.setText(null);
+        jTextFieldCep.setText(null);
+        jTextFieldCidade.setText(null);
+        jTextFieldComplemento.setText(null);*/
+        //jTextFieldCpf.setText(null);
+        //jTextFieldDataNascimento.setText(null);
+        //jTextFieldEnvergadura.setText("0.0");
+        /*jComboBoxEstado.setSelectedIndex(0);
+        jTextFieldLogradouro.setText(null);*/
+        /*jTextFieldNome.setText(null);
+        jTextFieldNomeMae.setText(null);
+        jTextFieldNomePai.setText(null);
+        jTextFieldNumero.setText("0");
+        jTextFieldPais.setText(null);*/
+        //jTextFieldPeso.setText("0.0");
+        //jTextFieldRg.setText(null);
+        /*jTextFieldPosicaoRanking.setText("0");
+        jTextFieldVelocidadeMediaSaque.setText("0");
+        jTextFieldTotalPartidas.setText("0");
+        jTextFieldTotalDerrotas.setText("0");
+        jTextFieldTotalVitorias.setText("0");*/
+        //telefonesListModel.clear();
+        //premiacaoListModel.clear();
+        //jComboBoxSexo.setSelectedIndex(0);
+        //jComboBoxTipoQuadraPreferida.setSelectedIndex(0);
+        //jComboBoxPrincipalGolpe.setSelectedIndex(0);
+        
+    }
+    
+    private void preencherCampoSexoTenista(){
+         switch (umTenista.getSexo()) {
             case Util.SEXO_MASCULINO_VALOR:
                 jComboBoxSexo.setSelectedIndex(Util.SEXO_MASCULINO_INDICE);
                 break;
@@ -118,7 +116,37 @@ public class CadastroTenista extends javax.swing.JFrame {
                 jComboBoxSexo.setSelectedIndex(Util.SEXO_FEMININO_INDICE);
                 break;
         }
+    }
 
+    private void preencherCamposDadosBasicos(){
+        jTextFieldAltura.setText(Double.toString(umTenista.getAltura()));
+        if (umTenista.getDataNascimento() == null) {
+            jTextFieldDataNascimento.setText(null);
+        } else {
+            jTextFieldDataNascimento.setText(dateFormat.format(umTenista.getDataNascimento()));
+        }
+        jTextFieldNome.setText(umTenista.getNome());
+        jTextFieldNomeMae.setText(umTenista.getNomeMae());
+        jTextFieldNomePai.setText(umTenista.getNomePai());
+        jTextFieldNumero.setText(umTenista.getEndereco().getNumero().toString());
+        jTextFieldPais.setText(umTenista.getEndereco().getPais());
+        jTextFieldPeso.setText(Double.toString(umTenista.getPeso()));
+        jTextFieldRg.setText(umTenista.getRg());
+        jTextFieldCpf.setText(umTenista.getCpf());
+        
+        preencherCampoSexoTenista();
+    }
+    
+    private void preencherCamposEndereco(){
+        jTextFieldBairro.setText(umTenista.getEndereco().getBairro());
+        jTextFieldCep.setText(umTenista.getEndereco().getCep());
+        jTextFieldCidade.setText(umTenista.getEndereco().getCidade());
+        jTextFieldComplemento.setText(umTenista.getEndereco().getComplemento());
+        jComboBoxEstado.setSelectedItem(umTenista.getEndereco().getEstado());
+        jTextFieldLogradouro.setText(umTenista.getEndereco().getLogradouro());
+    }
+    
+    private void preencherCampoTipoQuadraPreferidaTenista(){
         switch (umTenista.getTipoQuadraPreferida()) {
             case Util.TIPO_QUADRA_SAIBRO:
                 jComboBoxTipoQuadraPreferida.setSelectedIndex(Util.TIPO_QUADRA_SAIBRO_INDICE);
@@ -130,7 +158,9 @@ public class CadastroTenista extends javax.swing.JFrame {
                 jComboBoxTipoQuadraPreferida.setSelectedIndex(Util.TIPO_QUADRA_GRAMA_INDICE);
                 break;
         }
-
+    }
+    
+    private void preencherCampoPrincipalGolpeTenista(){
         switch (umTenista.getPrincipalGolpe()) {
             case Util.BACKHAND:
                 jComboBoxPrincipalGolpe.setSelectedIndex(Util.BACKHAND);
@@ -163,7 +193,9 @@ public class CadastroTenista extends javax.swing.JFrame {
                 jComboBoxPrincipalGolpe.setSelectedIndex(Util.TOPSPIN);
                 break;
         }
-        
+    }
+    
+    private void preencherCampoMaoPreferidaTenista(){
         switch(umTenista.getMaoPreferida()){
             case Util.DESTRO:
                 jComboBoxMaoPreferida.setSelectedIndex(Util.DESTRO_INDICE);
@@ -172,7 +204,9 @@ public class CadastroTenista extends javax.swing.JFrame {
                 jComboBoxMaoPreferida.setSelectedIndex(Util.CANHOTO_INDICE);
                 break;
         }
-        
+    }
+    
+    private void preencherCampoEmpunhaduraTenista(){
         switch(umTenista.getEmpunhadura()){
             case Util.L0:
                 jComboBoxEmpunhadura.setSelectedIndex(Util.L0);
@@ -193,17 +227,60 @@ public class CadastroTenista extends javax.swing.JFrame {
                 jComboBoxEmpunhadura.setSelectedIndex(Util.L5);
                 break;
         }
-
+    }
+    
+    private void preencherCamposTenista(){
+        jTextFieldEnvergadura.setText(Double.toString(umTenista.getEnvergadura()));
+        jTextFieldPosicaoRanking.setText(Integer.toString(umTenista.getTotalDerrotas()));
+        jTextFieldVelocidadeMediaSaque.setText(Float.toString(umTenista.getVelocidadeMediaSaque()));
+        jTextFieldTotalPartidas.setText(Integer.toString(umTenista.getTotalPartidas()));
+        jTextFieldTotalDerrotas.setText(Integer.toString(umTenista.getTotalDerrotas()));
+        jTextFieldTotalVitorias.setText(Integer.toString(umTenista.getTotalVitorias()));
+        
+        preencherCampoTipoQuadraPreferidaTenista();
+        preencherCampoPrincipalGolpeTenista();
+        preencherCampoMaoPreferidaTenista();
+        preencherCampoEmpunhaduraTenista();
+    }
+    
+    private void preencherCamposTelefone(){
+        ArrayList<String> telefones;
+        
+        telefonesListModel.clear();
+        telefones = umTenista.getTelefones();
+        for (String t : telefones) {
+            telefonesListModel.addElement(t);
+        }
+    }
+    
+    private void preencherCamposPremiacao(){
+        ArrayList<Premiacao> premiacoes;
+        
+        premiacaoListModel.clear();
+        premiacoes = umTenista.getPremiacoes();
+        for (Premiacao p : premiacoes) {
+            premiacaoListModel.addElement(p);
+        }
+    }
+    
+    private void preencherCampos() {
+        preencherCamposDadosBasicos();
+        preencherCamposEndereco();
+        preencherCamposTenista();
+        preencherCamposTelefone();
+        preencherCamposPremiacao();
     }
 
-    private boolean validarDadosBasicos(){
-        
+    private boolean validarNome(){
         if(jTextFieldNome.getText().trim().length() == 0) {
             this.exibirInformacao("O valor do campo 'Nome' não foi informado.");
             jTextFieldNome.requestFocus();
             return false;
         }
-        
+        return true;
+    }
+    
+    private boolean validarDataNascimento(){
         if (jTextFieldDataNascimento.getText().length() != 0) {
             try {
                 dateFormat.parse(jTextFieldDataNascimento.getText());
@@ -213,7 +290,10 @@ public class CadastroTenista extends javax.swing.JFrame {
                 return false;
             }
         }
-        
+        return true;
+    }
+    
+    private boolean validarAltura(){
         try {
             Double.parseDouble(jTextFieldAltura.getText());
         } catch (Exception ex) {
@@ -226,7 +306,10 @@ public class CadastroTenista extends javax.swing.JFrame {
             jTextFieldAltura.requestFocus();
             return false;
         }
-        
+        return true;
+    }
+    
+    private boolean validarPeso(){
         try {
             Double.parseDouble(jTextFieldPeso.getText());
         } catch (Exception ex) {
@@ -239,8 +322,21 @@ public class CadastroTenista extends javax.swing.JFrame {
             jTextFieldPeso.requestFocus();
             return false;
         }
-        
         return true;
+    }
+    
+    private boolean validarDadosBasicos(){
+        boolean nome, dataNascimento, altura, peso;
+        
+        nome = validarNome();
+        dataNascimento = validarDataNascimento();
+        altura = validarAltura();
+        peso = validarPeso();
+        
+        if(nome == true && dataNascimento == true && altura == true && peso == true)
+            return true;
+        
+        return false;
     }
     
     private boolean validarDadosEndereco(){
@@ -257,8 +353,7 @@ public class CadastroTenista extends javax.swing.JFrame {
          return true;
     }
     
-    private boolean validarDadosTenista(){
-        
+    private boolean validarEnvergadura(){
         try {
             Double.parseDouble(jTextFieldEnvergadura.getText());
         } catch (Exception ex) {
@@ -271,7 +366,10 @@ public class CadastroTenista extends javax.swing.JFrame {
             jTextFieldEnvergadura.requestFocus();
             return false;
         }
-        
+        return true;
+    }
+    
+    private boolean validarPosicaoRanking(){
         try {
             Integer.parseInt(jTextFieldPosicaoRanking.getText());
         } catch (Exception ex) {
@@ -284,7 +382,10 @@ public class CadastroTenista extends javax.swing.JFrame {
             jTextFieldPosicaoRanking.requestFocus();
             return false;
         }
-        
+        return true;
+    }
+    
+    private boolean validarVelocidadeMediaSaque(){
         try {
             Float.parseFloat(jTextFieldVelocidadeMediaSaque.getText());
         } catch (Exception ex) {
@@ -297,7 +398,10 @@ public class CadastroTenista extends javax.swing.JFrame {
             jTextFieldVelocidadeMediaSaque.requestFocus();
             return false;
         }
-        
+        return true;
+    }
+    
+    private boolean validarTotalPartidas(){
         try {
             Integer.parseInt(jTextFieldTotalPartidas.getText());
         } catch (Exception ex) {
@@ -310,7 +414,10 @@ public class CadastroTenista extends javax.swing.JFrame {
             jTextFieldTotalPartidas.requestFocus();
             return false; 
         }
-        
+        return true;
+    }
+    
+    private boolean validarTotalDerrotas(){
         try {
             Integer.parseInt(jTextFieldTotalDerrotas.getText());
         } catch (Exception ex) {
@@ -323,7 +430,10 @@ public class CadastroTenista extends javax.swing.JFrame {
             jTextFieldTotalDerrotas.requestFocus();
             return false;
         }
-        
+        return true;
+    }
+    
+    private boolean validarTotalVitorias(){
         try {
             Integer.parseInt(jTextFieldTotalVitorias.getText());
         } catch (Exception ex) {
@@ -336,31 +446,49 @@ public class CadastroTenista extends javax.swing.JFrame {
             jTextFieldTotalVitorias.requestFocus();
             return false;
         }
-        
         return true;
+    }
+    
+    private boolean validarDadosTenista(){
+        boolean envergadura;
+        boolean posicaoRanking;
+        boolean velocidadeMediaSaque;
+        boolean totalPartidas;
+        boolean totalDerrotas;
+        boolean totalVitorias;
+        
+        envergadura = validarEnvergadura();
+        posicaoRanking = validarPosicaoRanking();
+        velocidadeMediaSaque = validarVelocidadeMediaSaque();
+        totalPartidas = validarTotalPartidas();
+        totalDerrotas = validarTotalDerrotas();
+        totalVitorias = validarTotalVitorias();
+        
+        if(envergadura == true && posicaoRanking == true && velocidadeMediaSaque == true &&
+                totalPartidas == true && totalDerrotas == true && totalVitorias == true)
+            return true;
+        
+        return false;
     }
     
     private boolean validarCampos() {     
+        boolean dadosBasicos;
+        boolean dadosEndereco;
+        boolean dadosTenista;
         
-        validarDadosBasicos();
-        validarDadosEndereco();
-        validarDadosTenista();
+        dadosBasicos = validarDadosBasicos();
+        dadosEndereco = validarDadosEndereco();
+        dadosTenista = validarDadosTenista();
        
-        return true;
+        if(dadosBasicos == true && dadosEndereco == true && dadosTenista == true)
+            return true;
+        
+        return false;
     }
     
-    private void habilitarDesabilitarCampos() {
-        boolean registroSelecionado = (umTenista != null);
+    private void habilitarCamposDadosBasicos(){
         jTextFieldAltura.setEnabled(modoAlteracao);
-        jTextFieldBairro.setEnabled(modoAlteracao);
-        jTextFieldCep.setEnabled(modoAlteracao);
-        jTextFieldCidade.setEnabled(modoAlteracao);
-        jTextFieldComplemento.setEnabled(modoAlteracao);
-        jTextFieldCpf.setEnabled(modoAlteracao);
         jTextFieldDataNascimento.setEnabled(modoAlteracao);
-        jTextFieldEnvergadura.setEnabled(modoAlteracao);
-        jComboBoxEstado.setEnabled(modoAlteracao);
-        jTextFieldLogradouro.setEnabled(modoAlteracao);
         jTextFieldNome.setEnabled(modoAlteracao);
         jTextFieldNomeMae.setEnabled(modoAlteracao);
         jTextFieldNomePai.setEnabled(modoAlteracao);
@@ -368,11 +496,13 @@ public class CadastroTenista extends javax.swing.JFrame {
         jTextFieldPais.setEnabled(modoAlteracao);
         jTextFieldPeso.setEnabled(modoAlteracao);
         jTextFieldRg.setEnabled(modoAlteracao);
-        jTextFieldPosicaoRanking.setEnabled(modoAlteracao);
-        jTextFieldVelocidadeMediaSaque.setEnabled(modoAlteracao);
-        jTextFieldTotalPartidas.setEnabled(modoAlteracao);
-        jTextFieldTotalDerrotas.setEnabled(modoAlteracao);
-        jTextFieldTotalVitorias.setEnabled(modoAlteracao);
+        jComboBoxSexo.setEnabled(modoAlteracao);
+        jTextFieldCpf.setEnabled(modoAlteracao);
+    }
+    
+    private void habilitarBotoes(){
+        boolean registroSelecionado = (umTenista != null);
+        
         jButtonNovo.setEnabled(modoAlteracao == false);
         jButtonAlterar.setEnabled(modoAlteracao == false && registroSelecionado == true);
         jButtonExcluir.setEnabled(modoAlteracao == false && registroSelecionado == true);
@@ -383,25 +513,81 @@ public class CadastroTenista extends javax.swing.JFrame {
         jButtonRemoverTelefone.setEnabled(modoAlteracao);
         jButtonAdicionarPremiacao.setEnabled(modoAlteracao);
         jButtonRemoverPremiacao.setEnabled(modoAlteracao);
-        jComboBoxSexo.setEnabled(modoAlteracao);
+        jTableListaTenistas.setEnabled(modoAlteracao == false);
+    }
+    
+    private void habilitarCamposEndereco(){
+        jTextFieldBairro.setEnabled(modoAlteracao);
+        jTextFieldCep.setEnabled(modoAlteracao);
+        jTextFieldCidade.setEnabled(modoAlteracao);
+        jTextFieldComplemento.setEnabled(modoAlteracao);
+        jComboBoxEstado.setEnabled(modoAlteracao);
+        jTextFieldLogradouro.setEnabled(modoAlteracao);
+    }
+    
+    private void habilitarcamposDadosTenista(){
+        jTextFieldEnvergadura.setEnabled(modoAlteracao);
+        jTextFieldPosicaoRanking.setEnabled(modoAlteracao);
+        jTextFieldVelocidadeMediaSaque.setEnabled(modoAlteracao);
+        jTextFieldTotalPartidas.setEnabled(modoAlteracao);
+        jTextFieldTotalDerrotas.setEnabled(modoAlteracao);
+        jTextFieldTotalVitorias.setEnabled(modoAlteracao);
         jComboBoxTipoQuadraPreferida.setEnabled(modoAlteracao);
         jComboBoxPrincipalGolpe.setEnabled(modoAlteracao);
         jComboBoxEmpunhadura.setEnabled(modoAlteracao);
         jComboBoxTipoQuadraPreferida.setEnabled(modoAlteracao);
         jComboBoxMaoPreferida.setEnabled(modoAlteracao);
-        jTableListaTenistas.setEnabled(modoAlteracao == false);
+    }
+    
+    private void habilitarDesabilitarCampos() {  
+        habilitarCamposDadosBasicos();
+        habilitarBotoes();
+        habilitarCamposEndereco();
+        habilitarcamposDadosTenista();
     }
 
-    private void salvarRegistro() {
+    private Endereco setEndereco(){
         Endereco endereco;
+        
+        endereco = new Endereco();
+        endereco.setBairro(jTextFieldBairro.getText());
+        endereco.setCep(jTextFieldCep.getText());
+        endereco.setCidade(jTextFieldCidade.getText());
+        endereco.setComplemento(jTextFieldComplemento.getText());
+        endereco.setEstado((String) jComboBoxEstado.getSelectedItem());
+        endereco.setLogradouro(jTextFieldLogradouro.getText());
+        endereco.setNumero(jTextFieldNumero.getText());
+        endereco.setPais(jTextFieldPais.getText());
+        
+        return endereco;
+    }
+    
+    private ArrayList setTelefones(){
         ArrayList<String> telefones;
-        ArrayList<Premiacao> premiacoes;
-        Date dataNascimento;
-
-        if (this.validarCampos() == false) {
-            return;
+        
+        telefones = new ArrayList<String>();
+        for (int i = 0; i < telefonesListModel.size(); i++) {
+            telefones.add(telefonesListModel.getElementAt(i).toString());
         }
-
+        
+        return telefones;
+    }
+    
+    private ArrayList setPremiacoes(){
+        ArrayList<Premiacao> premiacoes;
+        
+        premiacoes = new ArrayList<Premiacao>();
+        for (int i = 0; i < premiacaoListModel.size(); i++) {
+            Premiacao premiacao = (Premiacao) premiacaoListModel.getElementAt(i);
+            premiacoes.add(premiacao);
+        }
+        
+        return premiacoes;
+    }
+    
+    private void salvarDadosBasicos(Endereco endereco, ArrayList<String> telefones, ArrayList<Premiacao> premiacoes){
+        Date dataNascimento;
+         
         if (jTextFieldDataNascimento.getText().length() == 0) {
             dataNascimento = null;
         } else {
@@ -412,28 +598,7 @@ public class CadastroTenista extends javax.swing.JFrame {
                 return;
             }
         }
-
-        endereco = new Endereco();
-        endereco.setBairro(jTextFieldBairro.getText());
-        endereco.setCep(jTextFieldCep.getText());
-        endereco.setCidade(jTextFieldCidade.getText());
-        endereco.setComplemento(jTextFieldComplemento.getText());
-        endereco.setEstado((String) jComboBoxEstado.getSelectedItem());
-        endereco.setLogradouro(jTextFieldLogradouro.getText());
-        endereco.setNumero(jTextFieldNumero.getText());
-        endereco.setPais(jTextFieldPais.getText());
-
-        telefones = new ArrayList<String>();
-        for (int i = 0; i < telefonesListModel.size(); i++) {
-            telefones.add(telefonesListModel.getElementAt(i).toString());
-        }
-
-        premiacoes = new ArrayList<Premiacao>();
-        for (int i = 0; i < premiacaoListModel.size(); i++) {
-            Premiacao premiacao = (Premiacao) premiacaoListModel.getElementAt(i);
-            premiacoes.add(premiacao);
-        }
-
+        
         if (novoRegistro == true) {
             umTenista = new Tenista(jTextFieldNome.getText());
         } else {
@@ -449,13 +614,9 @@ public class CadastroTenista extends javax.swing.JFrame {
         umTenista.setPeso(Double.parseDouble(jTextFieldPeso.getText()));
         umTenista.setCpf(jTextFieldCpf.getText());
         umTenista.setRg(jTextFieldRg.getText());
-        umTenista.setEnvergadura(Double.parseDouble(jTextFieldEnvergadura.getText()));
-        umTenista.setPosicaoRanking(Integer.parseInt(jTextFieldPosicaoRanking.getText()));
-        umTenista.setVelocidadeMediaSaque(Float.parseFloat(jTextFieldVelocidadeMediaSaque.getText()));
-        umTenista.setTotalPartidas(Integer.parseInt(jTextFieldTotalPartidas.getText()));
-        umTenista.setTotalDerrotas(Integer.parseInt(jTextFieldTotalDerrotas.getText()));
-        umTenista.setTotalVitorias(Integer.parseInt(jTextFieldTotalVitorias.getText()));
-
+    }
+    
+    private void setSexoTenista(){
         switch (jComboBoxSexo.getSelectedIndex()) {
             case Util.SEXO_MASCULINO_INDICE:
                 umTenista.setSexo(Util.SEXO_MASCULINO_VALOR);
@@ -464,11 +625,9 @@ public class CadastroTenista extends javax.swing.JFrame {
                 umTenista.setSexo(Util.SEXO_FEMININO_VALOR);
                 break;
         }
-        
-        switch(jComboBoxEstado.getSelectedIndex()){
-            
-        }
-
+    }
+    
+    private void setTipoQuadraPreferidaTenista(){
         switch (jComboBoxTipoQuadraPreferida.getSelectedIndex()) {
             case Util.TIPO_QUADRA_SAIBRO_INDICE:
                 umTenista.setTipoQuadraPreferida(Util.TIPO_QUADRA_SAIBRO);
@@ -480,7 +639,9 @@ public class CadastroTenista extends javax.swing.JFrame {
                 umTenista.setTipoQuadraPreferida(Util.TIPO_QUADRA_GRAMA);
                 break;
         }
-
+    }
+    
+    private void setPrincipalGolpeTenista(){
         switch (jComboBoxPrincipalGolpe.getSelectedIndex()) {
             case Util.BACKHAND:
                 umTenista.setPrincipalGolpe(Util.BACKHAND);
@@ -513,7 +674,9 @@ public class CadastroTenista extends javax.swing.JFrame {
                 umTenista.setPrincipalGolpe(Util.TOPSPIN);
                 break;
         }
-        
+    }
+    
+    private void setMaoPreferidaTenista(){
         switch(jComboBoxMaoPreferida.getSelectedIndex()){
             case Util.MAO_PREFERIDA_DIREITA_INDICE:
                 umTenista.setMaoPreferida(Util.MAO_PREFERIDA_DIREITA);
@@ -522,7 +685,9 @@ public class CadastroTenista extends javax.swing.JFrame {
                 umTenista.setMaoPreferida(Util.MAO_PREFERIDA_ESQUERDA);
                 break;
         }
-
+    }
+    
+    private void setEmpunhaduraTenista(){
         switch(jComboBoxEmpunhadura.getSelectedIndex()){
             case Util.L0:
                 umTenista.setEmpunhadura(Util.L0);
@@ -543,6 +708,37 @@ public class CadastroTenista extends javax.swing.JFrame {
                 umTenista.setEmpunhadura(Util.L5);
                 break;
         }
+    }
+    
+    private void salvarDadosTenista(){
+        umTenista.setEnvergadura(Double.parseDouble(jTextFieldEnvergadura.getText()));
+        umTenista.setPosicaoRanking(Integer.parseInt(jTextFieldPosicaoRanking.getText()));
+        umTenista.setVelocidadeMediaSaque(Float.parseFloat(jTextFieldVelocidadeMediaSaque.getText()));
+        umTenista.setTotalPartidas(Integer.parseInt(jTextFieldTotalPartidas.getText()));
+        umTenista.setTotalDerrotas(Integer.parseInt(jTextFieldTotalDerrotas.getText()));
+        umTenista.setTotalVitorias(Integer.parseInt(jTextFieldTotalVitorias.getText()));
+        
+        setSexoTenista();
+        setTipoQuadraPreferidaTenista();
+        setPrincipalGolpeTenista();
+        setMaoPreferidaTenista();
+        setEmpunhaduraTenista();
+    }
+    
+    private void salvarRegistro() {
+        Endereco endereco;
+        ArrayList<String> telefones;
+        ArrayList<Premiacao> premiacoes;
+
+        if (this.validarCampos() == false) {
+            return;
+        }
+
+        endereco = setEndereco();
+        telefones = setTelefones();
+        premiacoes = setPremiacoes();
+        salvarDadosBasicos(endereco, telefones, premiacoes);
+        salvarDadosTenista();
         
         if (novoRegistro == true) {
             controleTenista.adicionar(umTenista);
